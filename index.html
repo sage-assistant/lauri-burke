@@ -3,1469 +3,1925 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LEVELED: The Extraordinary Migration of Lauri Burke</title>
+  <title>Exclusive Listing | Lauri Burke | Cape Town</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garabmond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0f0a;
-      --surface: #111a11;
-      --surface-2: #162016;
-      --border: rgba(255,255,255,0.08);
-      --text: #f0ece4;
-      --text-dim: #8a917e;
-      --green: #4a7c3f;
-      --green-light: #6ba35c;
-      --green-soft: rgba(74,124,63,0.15);
-      --green-glow: rgba(74,124,63,0.3);
-      --amber: #d4a853;
-      --amber-soft: rgba(212,168,83,0.12);
-      --amber-glow: rgba(212,168,83,0.3);
-      --red-warn: #c0392b;
-      --red-soft: rgba(192,57,43,0.15);
-      --cream: #f0ece4;
+      --cream: #faf9f6;
+      --navy: #1a2744;
+      --navy-light: #2a3d5e;
+      --gold: #c4a265;
+      --gold-light: #d4b87a;
+      --gold-soft: rgba(196,162,101,0.12);
+      --text: #2c2c2c;
+      --text-dim: #6b6b6b;
+      --border: rgba(26,39,68,0.1);
+      --white: #ffffff;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--cream);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Film grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 9997;
-    }
+    .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
 
-    .gradient-bg {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 30% 20%, rgba(74,124,63,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 50% at 70% 70%, rgba(212,168,83,0.04) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    /* ===== SPLASH / TEASER ===== */
-    .splash {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-    .splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
-    .splash-network {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--green-light);
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeUp 1s 0.2s forwards;
-    }
-
-    .splash-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 1s 0.5s forwards;
-    }
-
-    .splash-logo em { font-style: italic; color: var(--amber); }
-
-    .splash-tagline {
-      font-size: 1rem;
-      color: var(--text-dim);
-      max-width: 500px;
-      margin-bottom: 0.75rem;
-      opacity: 0;
-      animation: fadeUp 1s 0.8s forwards;
-    }
-
-    .splash-rating {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 4px;
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      letter-spacing: 0.1em;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeUp 1s 1s forwards;
-    }
-
-    .splash-enter {
-      padding: 1.1rem 3.5rem;
-      background: var(--green);
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-      opacity: 0;
-      animation: fadeUp 1s 1.2s forwards;
-    }
-    .splash-enter:hover { transform: translateY(-2px); box-shadow: 0 20px 40px var(--green-glow); background: var(--green-light); }
-
-    .splash-disclaimer {
-      position: absolute;
-      bottom: 2rem;
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.25);
-      font-style: italic;
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
+    /* Topbar */
+    .topbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 9998;
+      z-index: 1000;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10,15,10,0.85);
+      background: rgba(250,249,246,0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(-100%);
-      transition: all 0.5s;
-    }
-    .navbar.visible { opacity: 1; transform: translateY(0); }
-
-    .nav-brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--amber);
-      letter-spacing: 0.05em;
+      transition: transform 0.4s;
     }
 
-    .nav-links { display: flex; gap: 1.5rem; }
-    .nav-links a {
-      font-size: 0.7rem;
+    .topbar-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
       font-weight: 600;
+      color: var(--navy);
       letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .topbar-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .topbar-nav a {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--text); }
 
-    /* ===== UTILITIES ===== */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); position: relative; z-index: 1; }
-    .display { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
-    .label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--green-light); }
+    .topbar-nav a:hover { color: var(--gold); }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .topbar-cta {
+      padding: 0.6rem 1.5rem;
+      background: var(--navy);
+      color: var(--white) !important;
+      border-radius: 2px;
+      transition: background 0.3s !important;
+    }
 
-    .reveal { opacity: 0; transform: translateY(50px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.15s; }
-    .reveal-delay-2 { transition-delay: 0.3s; }
-    .reveal-delay-3 { transition-delay: 0.45s; }
+    .topbar-cta:hover { background: var(--gold) !important; }
 
-    section { padding: clamp(5rem, 12vw, 8rem) 0; }
-    .section-header { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
-    .section-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-top: 0.75rem; margin-bottom: 1.25rem; }
-    .section-desc { font-size: 1.05rem; color: var(--text-dim); line-height: 1.8; }
+    /* Container */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+    .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
 
-    /* ===== HERO ===== */
+    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
+      justify-content: flex-end;
       position: relative;
-      background:
-        linear-gradient(180deg, rgba(10,15,10,0) 0%, rgba(10,15,10,0.7) 60%, var(--bg) 100%),
-        radial-gradient(ellipse 120% 80% at 50% 30%, rgba(74,124,63,0.12) 0%, transparent 60%);
+      overflow: hidden;
+      padding-bottom: 4rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(175deg, #1a2744 0%, #2a3d5e 30%, #4a6741 55%, #8fbc8f 70%, #c4a265 85%, #faf9f6 100%);
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 70% 70%, rgba(196,162,101,0.15) 0%, transparent 60%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, var(--cream) 0%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      max-width: 1140px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
       padding: 0.5rem 1.25rem;
-      background: var(--green-soft);
-      border: 1px solid rgba(74,124,63,0.3);
-      border-radius: 100px;
+      background: var(--navy);
+      color: var(--gold);
       font-size: 0.65rem;
       font-weight: 700;
-      color: var(--green-light);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       opacity: 0;
-      animation: fadeUp 1s 0.2s forwards;
+      animation: fadeUp 0.8s ease-out 0.2s forwards;
     }
+
     .hero-badge::before {
       content: '';
       width: 8px;
       height: 8px;
-      background: var(--green-light);
+      background: var(--gold);
       border-radius: 50%;
-      animation: blink 1.5s ease-in-out infinite;
+      animation: pulse-dot 2s ease-in-out infinite;
     }
-    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
     .hero-title {
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      max-width: 1000px;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 1s 0.4s forwards;
-    }
-    .hero-title em { font-style: italic; color: var(--amber); }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
       font-weight: 300;
+      color: var(--navy);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.4s forwards;
+    }
+
+    .hero-address {
+      font-size: 0.85rem;
+      font-weight: 500;
       color: var(--text-dim);
-      max-width: 700px;
-      line-height: 1.8;
+      letter-spacing: 0.05em;
       margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1s 0.6s forwards;
+      animation: fadeUp 0.8s ease-out 0.55s forwards;
     }
 
     .hero-meta {
       display: flex;
-      gap: 2rem;
+      gap: 3rem;
       flex-wrap: wrap;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      opacity: 0;
-      animation: fadeUp 1s 0.8s forwards;
-    }
-    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
-
-    /* ===== SPECIES CLASSIFICATION ===== */
-    .species-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .species-card {
-      max-width: 700px;
-      margin: 0 auto;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .species-header {
-      padding: 1.5rem 2rem;
-      background: var(--green-soft);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .species-header-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--green-light);
-    }
-
-    .species-header-id { font-size: 0.7rem; color: var(--text-dim); font-family: 'Special Elite', monospace; }
-
-    .species-body { padding: 2rem; }
-
-    .species-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-style: italic;
-      color: var(--amber);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .taxonomy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-    }
-
-    .taxonomy-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.6rem 1rem;
-      background: var(--surface);
-      border-radius: 4px;
-    }
-
-    .taxonomy-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
-    .taxonomy-value { font-size: 0.85rem; color: var(--text); font-style: italic; }
-
-    .species-note {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: var(--amber-soft);
-      border-left: 3px solid var(--amber);
-      font-family: 'Special Elite', monospace;
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.7;
-    }
-
-    /* ===== EPISODE GUIDE ===== */
-    .episodes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .episode-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .episode-card:hover { transform: translateY(-4px); border-color: var(--green); }
-
-    .episode-thumb {
-      height: 180px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .episode-thumb-bg {
-      width: 100%;
-      height: 100%;
-      transition: transform 0.5s;
-    }
-    .episode-card:hover .episode-thumb-bg { transform: scale(1.05); }
-
-    .ep-bg-1 { background: linear-gradient(135deg, #1a3a1a 0%, #2d5a2d 50%, #1a4a2a 100%); }
-    .ep-bg-2 { background: linear-gradient(135deg, #2a1a0a 0%, #5a3a1a 50%, #3a2a0a 100%); }
-    .ep-bg-3 { background: linear-gradient(135deg, #0a1a2a 0%, #1a3a5a 50%, #0a2a4a 100%); }
-    .ep-bg-4 { background: linear-gradient(135deg, #2a0a1a 0%, #5a1a3a 50%, #3a0a2a 100%); }
-    .ep-bg-5 { background: linear-gradient(135deg, #1a1a2a 0%, #3a2a5a 50%, #2a1a4a 100%); }
-    .ep-bg-6 { background: linear-gradient(135deg, #2a2a0a 0%, #5a5a1a 50%, #4a4a0a 100%); }
-
-    .episode-number {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      padding: 0.3rem 0.8rem;
-      background: rgba(0,0,0,0.6);
-      border-radius: 4px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--amber);
-    }
-
-    .episode-duration {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      padding: 0.2rem 0.6rem;
-      background: rgba(0,0,0,0.6);
-      border-radius: 4px;
-      font-size: 0.7rem;
-      color: var(--text-dim);
-    }
-
-    .episode-play {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .episode-card:hover .episode-play { opacity: 1; }
-    .episode-play::after { content: '▶'; color: white; font-size: 1rem; margin-left: 3px; }
-
-    .episode-info { padding: 1.25rem; }
-    .episode-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
-    .episode-teaser { font-size: 0.8rem; color: var(--text-dim); line-height: 1.6; }
-
-    .episode-expand {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, padding 0.5s ease;
-    }
-    .episode-card.expanded .episode-expand {
-      max-height: 300px;
-      padding: 0 1.25rem 1.25rem;
-    }
-
-    .episode-full {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      line-height: 1.8;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border);
-      font-style: italic;
-      font-family: 'Special Elite', monospace;
-    }
-
-    /* ===== FIELD NOTES / RESEARCHER LOGS ===== */
-    .field-notes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .field-note {
-      padding: 2rem;
-      background: #f5f0e6;
-      border-radius: 2px;
-      color: #1a1a1a;
-      font-family: 'Special Elite', monospace;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      transform: rotate(var(--rotate, 0deg));
-    }
-
-    .field-note::before {
-      content: 'CLASSIFIED';
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      font-size: 0.55rem;
-      font-weight: 700;
-      color: var(--red-warn);
-      letter-spacing: 0.2em;
-      border: 1px solid var(--red-warn);
-      padding: 0.15rem 0.5rem;
-      border-radius: 2px;
-    }
-
-    .field-note-date { font-size: 0.7rem; color: #888; margin-bottom: 1rem; }
-    .field-note-body { font-size: 0.85rem; line-height: 1.8; color: #333; }
-    .field-note-sig { margin-top: 1rem; font-size: 0.75rem; color: #666; font-style: italic; }
-
-    /* ===== CRITIC REVIEWS ===== */
-    .reviews-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .reviews-scroll {
-      display: flex;
-      gap: 2rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      scrollbar-width: none;
-    }
-    .reviews-scroll::-webkit-scrollbar { display: none; }
-
-    .review-card {
-      flex: 0 0 350px;
-      padding: 2.5rem 2rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .review-stars { font-size: 1.25rem; color: var(--amber); margin-bottom: 1rem; letter-spacing: 0.2em; }
-    .review-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-    .review-source { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
-
-    /* ===== FIELD OBSERVATION LOG (SLIDERS) ===== */
-    .observation-section { background: var(--bg); }
-
-    .observation-box {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 3rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-    }
-
-    .observation-header {
-      text-align: center;
       margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.7s forwards;
     }
 
-    .observation-header h3 {
-      font-family: 'Special Elite', monospace;
-      font-size: 1.2rem;
-      color: var(--amber);
-      margin-bottom: 0.5rem;
-    }
-
-    .observation-header p { font-size: 0.8rem; color: var(--text-dim); }
-
-    .slider-group { margin-bottom: 1.75rem; }
-    .slider-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.5rem;
-    }
-    .slider-label span { font-size: 0.8rem; color: var(--text); }
-    .slider-label .slider-value { font-family: 'Special Elite', monospace; color: var(--amber); font-size: 0.9rem; }
-
-    .slider-track {
-      position: relative;
-      width: 100%;
-      height: 6px;
-      background: var(--surface-2);
-      border-radius: 3px;
-      overflow: visible;
-    }
-
-    input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 6px;
-      background: transparent;
-      cursor: pointer;
-      position: relative;
-      z-index: 2;
-    }
-
-    input[type="range"]::-webkit-slider-runnable-track {
-      height: 6px;
-      background: linear-gradient(90deg, var(--green) 0%, var(--amber) 100%);
-      border-radius: 3px;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      background: var(--amber);
-      border-radius: 50%;
-      margin-top: -6px;
-      box-shadow: 0 2px 8px rgba(212,168,83,0.4);
-    }
-
-    input[type="range"]::-moz-range-track {
-      height: 6px;
-      background: linear-gradient(90deg, var(--green) 0%, var(--amber) 100%);
-      border-radius: 3px;
-      border: none;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      background: var(--amber);
-      border-radius: 50%;
-      border: none;
-      box-shadow: 0 2px 8px rgba(212,168,83,0.4);
-    }
-
-    .slider-labels-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.6rem;
-      color: var(--text-dim);
-      margin-top: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .observation-result {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: var(--bg);
-      border-radius: 4px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .result-level {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--amber);
-      margin-bottom: 0.25rem;
-    }
-
-    .result-classification {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      font-family: 'Special Elite', monospace;
-    }
-
-    /* ===== PROXIMITY ALERT ===== */
-    .proximity-section {
-      position: relative;
-      min-height: 500px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .proximity-field {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      cursor: crosshair;
-    }
-
-    .proximity-rings {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .proximity-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: border-color 0.3s;
-    }
-
-    .ring-1 { width: 100px; height: 100px; border-color: var(--red-warn); animation: pulse-ring 2s ease-in-out infinite; }
-    .ring-2 { width: 200px; height: 200px; border-color: var(--amber); opacity: 0.6; animation: pulse-ring 2s 0.3s ease-in-out infinite; }
-    .ring-3 { width: 320px; height: 320px; border-color: var(--green); opacity: 0.4; animation: pulse-ring 2s 0.6s ease-in-out infinite; }
-    .ring-4 { width: 460px; height: 460px; border-color: var(--green); opacity: 0.2; animation: pulse-ring 2s 0.9s ease-in-out infinite; }
-
-    @keyframes pulse-ring { 0%,100% { transform: translate(-50%,-50%) scale(1); } 50% { transform: translate(-50%,-50%) scale(1.05); } }
-
-    .proximity-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 12px;
-      height: 12px;
-      background: var(--amber);
-      border-radius: 50%;
-      box-shadow: 0 0 20px var(--amber-glow), 0 0 60px var(--amber-glow);
-      pointer-events: none;
-    }
-
-    .proximity-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, 40px);
-      font-family: 'Special Elite', monospace;
-      font-size: 0.7rem;
-      color: var(--amber);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    .proximity-cursor {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--green-light);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      transition: border-color 0.2s;
-    }
-
-    .proximity-hud {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 2rem;
-      padding: 1rem 2rem;
-      background: rgba(10,15,10,0.9);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      pointer-events: none;
-    }
-
-    .hud-item { text-align: center; }
-    .hud-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.25rem; }
-    .hud-value { font-family: 'Special Elite', monospace; font-size: 1rem; color: var(--amber); }
-    .hud-value.danger { color: var(--red-warn); }
-    .hud-value.safe { color: var(--green-light); }
-
-    /* ===== WARNING SECTION ===== */
-    .warning-section {
-      background: linear-gradient(180deg, var(--bg) 0%, rgba(192,57,43,0.05) 50%, var(--bg) 100%);
-    }
-
-    .warning-box {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 3rem;
-      border: 2px solid var(--red-warn);
-      border-radius: 2px;
-      background: var(--red-soft);
-      text-align: center;
-    }
-
-    .warning-icon { font-size: 3rem; margin-bottom: 1rem; }
-
-    .warning-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      color: var(--red-warn);
-      margin-bottom: 1rem;
-    }
-
-    .warning-text {
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .warning-symptoms {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
+    .hero-meta-item {
       text-align: left;
     }
 
-    .symptom {
-      padding: 0.75rem 1rem;
-      background: rgba(0,0,0,0.3);
-      border-radius: 4px;
+    .hero-meta-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .hero-meta-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .hero-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.85s forwards;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .hero-price:active { transform: scale(0.98); }
+
+    .hero-price-note {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.95s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    section { padding: clamp(4rem, 10vw, 7rem) 0; }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-dim);
+      max-width: 680px;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 3rem 0;
+    }
+
+    .divider-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Overview section */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Photo gallery placeholder */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 280px 200px;
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / -1;
+    }
+
+    .gallery-item-bg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+    }
+
+    .gallery-item:hover .gallery-item-bg {
+      transform: scale(1.05);
+    }
+
+    .gi-1 {
+      background: linear-gradient(135deg, #1a2744 0%, #2a3d5e 40%, #4a6741 70%, #6b8f5e 100%);
+    }
+
+    .gi-2 {
+      background: linear-gradient(145deg, #c4a265 0%, #d4b87a 50%, #e8d5a8 100%);
+    }
+
+    .gi-3 {
+      background: linear-gradient(160deg, #2a3d5e 0%, #1a2744 60%, #0f1a2e 100%);
+    }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      background: rgba(26,39,68,0.6);
+      padding: 0.35rem 0.8rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .photo-count {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: white;
+      background: rgba(26,39,68,0.7);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+
+    /* Amenities */
+    .amenities-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    .amenity-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
       font-size: 0.8rem;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--navy);
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .amenity-pill:hover {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      transform: translateY(-2px);
+    }
+
+    .amenity-icon {
+      font-size: 1rem;
+    }
+
+    /* Floor Plan */
+    .floorplan-section {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floorplan-section .section-label { color: var(--gold); }
+    .floorplan-section .section-title { color: var(--white); }
+    .floorplan-section .section-text { color: rgba(255,255,255,0.6); }
+
+    .floorplan {
+      margin-top: 3rem;
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .floorplan-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 140px);
+      gap: 3px;
+    }
+
+    .fp-room {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(196,162,101,0.2);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.4s;
+      overflow: hidden;
+    }
+
+    .fp-room::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(196,162,101,0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .fp-room:hover::before { opacity: 1; }
+    .fp-room:hover { border-color: var(--gold); }
+
+    .fp-room-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1.3;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fp-room-size {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fp-room.large { grid-column: span 2; }
+    .fp-room.tall { grid-row: span 2; }
+    .fp-room.condemned {
+      background: rgba(229,57,53,0.05);
+      border-style: dashed;
+      border-color: rgba(229,57,53,0.3);
+    }
+
+    .fp-room.condemned .fp-room-name {
+      color: rgba(229,57,53,0.6);
+      text-decoration: line-through;
+    }
+
+    .fp-compass {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgba(196,162,101,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .fp-legend {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .fp-legend-item {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .symptom::before { content: '⚠'; font-size: 0.7rem; }
-
-    /* ===== CTA / FOLLOW ===== */
-    .cta-section {
-      text-align: center;
-      padding: 8rem 2rem;
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(74,124,63,0.08) 0%, transparent 60%),
-        var(--bg);
+    .fp-legend-swatch {
+      width: 12px;
+      height: 12px;
+      border: 1px solid rgba(196,162,101,0.3);
     }
 
-    .cta-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1.25rem; }
-    .cta-desc { font-size: 1.05rem; color: var(--text-dim); max-width: 600px; margin: 0 auto 3rem; line-height: 1.8; }
+    .fp-legend-swatch.condemned {
+      border-style: dashed;
+      border-color: rgba(229,57,53,0.4);
+    }
 
-    .cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1.1rem 3rem;
-      background: var(--green);
+    /* Neighborhood */
+    .neighborhood-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .neighborhood-map {
+      aspect-ratio: 1;
+      background: var(--navy);
       border-radius: 4px;
-      text-decoration: none;
-      color: white;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .cta-link:hover { transform: translateY(-2px); box-shadow: 0 20px 40px var(--green-glow); }
-
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 4rem 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--amber); margin-bottom: 0.5rem; }
-    .footer-tagline { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
-    .footer-disclaimer { font-size: 0.65rem; color: var(--text-dim); opacity: 0.5; max-width: 550px; margin: 0 auto; line-height: 1.7; }
-
-    /* ===== EASTER EGG: KONAMI ===== */
-    .konami-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 99999;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .konami-overlay.active { display: flex; }
-    .konami-overlay h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: var(--amber);
-      margin-bottom: 1rem;
-    }
-    .konami-overlay p { color: var(--text-dim); font-size: 1.1rem; max-width: 500px; line-height: 1.8; margin-bottom: 2rem; }
-    .konami-close {
-      padding: 0.75rem 2rem;
-      background: var(--green);
-      border: none;
-      border-radius: 4px;
-      color: white;
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    /* ===== PARALLAX HERO SCROLL ===== */
-    .parallax-container {
       position: relative;
       overflow: hidden;
     }
 
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .taxonomy-grid { grid-template-columns: 1fr; }
-      .episodes-grid { grid-template-columns: 1fr; }
-      .field-notes-grid { grid-template-columns: 1fr; }
-      .warning-symptoms { grid-template-columns: 1fr; }
-      .proximity-field { height: 350px; }
-      .proximity-hud { gap: 1rem; padding: 0.75rem 1.25rem; }
-      .ring-3, .ring-4 { display: none; }
-      .review-card { flex: 0 0 280px; }
-      .hero-meta { gap: 1rem; }
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(196,162,101,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,162,101,0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
-    /* ===== SECRET CLICK ANIMATION ===== */
-    .level-up-burst {
-      position: fixed;
-      pointer-events: none;
-      z-index: 99998;
-      font-size: 2rem;
-      animation: burstUp 1s ease-out forwards;
+    .map-pin {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      transform: translate(-50%, -100%);
     }
-    @keyframes burstUp {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+
+    .map-pin-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(196,162,101,0.4);
+    }
+
+    .map-pin-dot.main {
+      width: 18px;
+      height: 18px;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    .map-pin-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    .map-road {
+      position: absolute;
+      background: rgba(196,162,101,0.12);
+    }
+
+    .map-road.h { height: 2px; }
+    .map-road.v { width: 2px; }
+
+    .neighborhood-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .neighborhood-item {
+      padding: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      transition: border-color 0.3s;
+    }
+
+    .neighborhood-item:hover {
+      border-color: var(--gold);
+    }
+
+    .neighborhood-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .neighborhood-item-distance {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .neighborhood-item-text {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* Virtual Tour */
+    .tour-section {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tour-rooms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .tour-room {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+
+    .tour-room-header {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tour-room-header:hover {
+      background: var(--gold-soft);
+    }
+
+    .tour-room-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .tour-room-enter {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .tour-room-header:hover .tour-room-enter {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .tour-room-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+    }
+
+    .tour-room-content-inner {
+      padding: 0 1.5rem 1.5rem;
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    .tour-room.open .tour-room-content {
+      max-height: 300px;
+    }
+
+    .tour-room.open .tour-room-enter {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .tour-room.open .tour-room-enter::after {
+      content: ' ✓';
+    }
+
+    /* Comparables */
+    .comp-table-wrapper {
+      overflow-x: auto;
+      margin-top: 3rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .comp-table thead {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .comp-table th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .comp-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .comp-table tr:hover td { background: var(--gold-soft); }
+
+    .comp-highlight {
+      background: rgba(196,162,101,0.05);
+    }
+
+    .comp-highlight td:first-child {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .comp-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: var(--gold-soft);
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    .comp-dim { color: var(--text-dim); }
+
+    /* Reviews */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .review-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .review-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .review-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--navy);
+    }
+
+    .review-date {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .review-verified {
+      font-size: 0.65rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Mortgage Calculator */
+    .calc-section {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .calc-section .section-label { color: var(--gold); }
+    .calc-section .section-title { color: var(--white); }
+
+    .calc-box {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(196,162,101,0.2);
+      border-radius: 4px;
+      padding: 2.5rem;
+    }
+
+    .calc-field {
+      margin-bottom: 1.5rem;
+    }
+
+    .calc-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .calc-input {
+      width: 100%;
+      padding: 0.9rem 1.25rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(196,162,101,0.2);
+      border-radius: 2px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .calc-input:focus {
+      border-color: var(--gold);
+    }
+
+    .calc-input::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .calc-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gold);
+      border: none;
+      border-radius: 2px;
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .calc-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .calc-result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(196,162,101,0.1);
+      border: 1px solid rgba(196,162,101,0.25);
+      border-radius: 3px;
+      text-align: center;
+      display: none;
+    }
+
+    .calc-result.visible { display: block; animation: fadeUp 0.5s ease-out; }
+
+    .calc-result-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .calc-result-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Agent Card */
+    .agent-section {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .agent-card {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .agent-photo {
+      width: 180px;
+      height: 220px;
+      flex-shrink: 0;
+      border-radius: 3px;
+      background: linear-gradient(145deg, var(--navy) 0%, #2a3d5e 50%, var(--gold) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agent-photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(26,39,68,0.9), transparent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .agent-info {
+      flex: 1;
+    }
+
+    .agent-agency {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .agent-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .agent-title-text {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .agent-contact-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .agent-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .agent-btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .agent-btn-primary:hover {
+      background: var(--gold);
+    }
+
+    .agent-btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--navy);
+    }
+
+    .agent-btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .footer-disclaimer {
+      margin-top: 2rem;
+      font-size: 0.65rem;
+      color: rgba(0,0,0,0.2);
+    }
+
+    .footer-egg {
+      margin-top: 4rem;
+      font-size: 0.55rem;
+      color: rgba(0,0,0,0.08);
+      cursor: default;
+      transition: color 0.3s;
+    }
+
+    .footer-egg:hover {
+      color: rgba(0,0,0,0.3);
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      padding: 5rem 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--cream) 0%, #f0ede5 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cta-banner-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .cta-banner-text {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-banner-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.5rem;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .cta-banner-btn:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Sticky inquiry bar */
+    .inquiry-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 0.85rem 2rem;
+      background: var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateY(100%);
+      transition: transform 0.4s;
+    }
+
+    .inquiry-bar.visible {
+      transform: translateY(0);
+    }
+
+    .inquiry-bar-info {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .inquiry-bar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .inquiry-bar-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .inquiry-bar-btn {
+      padding: 0.6rem 1.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .inquiry-bar-btn:hover {
+      background: var(--gold-light);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .topbar-nav { display: none; }
+
+      .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+      .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px 150px 150px;
+      }
+
+      .gallery-item:first-child { grid-row: auto; }
+
+      .floorplan-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+      }
+
+      .fp-room.large { grid-column: span 2; }
+      .fp-room.tall { grid-row: auto; }
+
+      .neighborhood-grid { grid-template-columns: 1fr; }
+
+      .agent-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .agent-contact-row { justify-content: center; }
+
+      .inquiry-bar-info { gap: 1rem; }
+      .inquiry-bar-title { display: none; }
+
+      .hero-meta { gap: 1.5rem; }
+
+      .comp-table { font-size: 0.78rem; }
+
+      .fp-compass { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .floorplan-grid {
+        grid-template-columns: 1fr;
+      }
+      .fp-room.large { grid-column: auto; }
+    }
+
+    /* Print styles */
+    @media print {
+      .topbar, .inquiry-bar { display: none; }
+      .hero { min-height: auto; }
     }
   </style>
 </head>
 <body>
 
-<div class="gradient-bg"></div>
+  <!-- Topbar -->
+  <nav class="topbar">
+    <div class="topbar-logo">Level Up Properties</div>
+    <div class="topbar-nav">
+      <a href="#overview">Overview</a>
+      <a href="#features">Features</a>
+      <a href="#floorplan">Floor Plan</a>
+      <a href="#neighborhood">Neighborhood</a>
+      <a href="#tour">Virtual Tour</a>
+      <a href="#agent" class="topbar-cta">Schedule a Viewing</a>
+    </div>
+  </nav>
 
-<!-- ===== SPLASH SCREEN ===== -->
-<div class="splash" id="splash">
-  <div class="splash-network">Burke Nature Institute Presents</div>
-  <h1 class="splash-logo display">LEVELED</h1>
-  <p class="splash-tagline">The Extraordinary Migration of Lauri Burke</p>
-  <div class="splash-rating">RATED LU &bull; LEVELING UP &bull; VIEWER TRANSFORMATION MAY OCCUR</div>
-  <button class="splash-enter" id="enterBtn">&#9654;&nbsp; Begin Viewing</button>
-  <p class="splash-disclaimer">The Burke Nature Institute is not responsible for spontaneous personal growth experienced while viewing this content.</p>
-</div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        Exclusive Listing
+      </div>
+      <h1 class="hero-title">Lauri Burke</h1>
+      <p class="hero-address">Cape Town, Western Cape, South Africa &nbsp;|&nbsp; Ref. #LEVELUP001</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">&infin;</div>
+          <div class="hero-meta-label">Beds</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">Crystal</div>
+          <div class="hero-meta-label">Clarity</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">&infin;</div>
+          <div class="hero-meta-label">Sq Ft</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hero-meta-value">SACAP</div>
+          <div class="hero-meta-label">Certified</div>
+        </div>
+      </div>
+      <div class="hero-price" id="heroPrice" title="Click me">R&infin; &nbsp;|&nbsp; Priceless</div>
+      <p class="hero-price-note">Price on Application (you can't afford her)</p>
+    </div>
+  </section>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar" id="navbar">
-  <div class="nav-brand">LEVELED</div>
-  <div class="nav-links">
-    <a href="#episodes">Episodes</a>
-    <a href="#fieldlog">Field Log</a>
-    <a href="#proximity">Proximity</a>
-    <a href="#follow">Follow</a>
+  <!-- Gallery -->
+  <section style="padding-top: 0; margin-top: -2rem; position: relative; z-index: 3;">
+    <div class="container">
+      <div class="gallery reveal">
+        <div class="gallery-item">
+          <div class="gallery-item-bg gi-1"></div>
+          <span class="gallery-label">Table Mountain Perspective</span>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item-bg gi-2"></div>
+          <span class="gallery-label">Golden Hour Energy</span>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item-bg gi-3"></div>
+          <span class="gallery-label">Interior Depth</span>
+          <span class="photo-count">+47 Photos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="overview">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="reveal">
+          <div class="section-label">Property Description</div>
+          <h2 class="section-title">A Once in a Generation Opportunity</h2>
+          <div class="divider"></div>
+          <p class="section-text">
+            This rare Cape Town gem combines SACAP certified psychological architecture with panoramic views of human potential. Originally constructed with a foundation in Applied Psychology, the property has since undergone extensive renovations including a full "Level Up" expansion.
+          </p>
+          <br>
+          <p class="section-text">
+            Situated in one of the Western Cape's most sought after positions, this listing offers unobstructed sightlines toward personal growth, with a layout optimized for breakthrough moments and transformational flow. The current owner has maintained the property to an exceptional standard, with zero deferred maintenance on emotional intelligence systems.
+          </p>
+          <br>
+          <p class="section-text">
+            Prospective buyers should note: this is not a fixer upper. This property will fix <em>you</em>.
+          </p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.15s;">
+          <div class="section-label">Key Details</div>
+          <div style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Listing Type</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">Exclusive</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Year Established</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">The Renaissance Era (hers)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Certification</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">SACAP Verified</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Energy Rating</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">A+++ (Radiates Light)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Views</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">Panoramic (of your potential)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Parking</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">No parking your excuses here</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 1rem 0;">
+              <span style="font-size: 0.82rem; color: var(--text-dim);">Pet Policy</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--navy);">Pet peeves only (she'll fix those)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features / Amenities -->
+  <section id="features" style="background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label">Key Features &amp; Amenities</div>
+        <h2 class="section-title">What This Property Offers</h2>
+        <p class="section-text" style="margin: 0 auto;">Every feature has been carefully curated to exceed even the most discerning expectations. Viewings are limited to protect the exclusivity of this listing.</p>
+      </div>
+      <div class="amenities-grid reveal" style="justify-content: center; margin-top: 3rem;">
+        <span class="amenity-pill"><span class="amenity-icon">🎓</span> Psychology Certified</span>
+        <span class="amenity-pill"><span class="amenity-icon">⛰️</span> Table Mountain Views</span>
+        <span class="amenity-pill"><span class="amenity-icon">📈</span> Unlimited Growth Potential</span>
+        <span class="amenity-pill"><span class="amenity-icon">☀️</span> South Facing (always toward the light)</span>
+        <span class="amenity-pill"><span class="amenity-icon">🧠</span> Fully Renovated Mindset</span>
+        <span class="amenity-pill"><span class="amenity-icon">🏗️</span> Open Plan Thinking</span>
+        <span class="amenity-pill"><span class="amenity-icon">✨</span> Natural Light (she radiates it)</span>
+        <span class="amenity-pill"><span class="amenity-icon">🏛️</span> High Emotional Ceilings</span>
+        <span class="amenity-pill"><span class="amenity-icon">⚡</span> Built in Motivation System</span>
+        <span class="amenity-pill"><span class="amenity-icon">🔒</span> Secure Boundaries</span>
+        <span class="amenity-pill"><span class="amenity-icon">🌊</span> Ocean Adjacent Depth</span>
+        <span class="amenity-pill"><span class="amenity-icon">🔥</span> Underfloor Heating (warm personality)</span>
+        <span class="amenity-pill"><span class="amenity-icon">🪞</span> Self Reflection Enabled</span>
+        <span class="amenity-pill"><span class="amenity-icon">🛡️</span> Structural Integrity Guaranteed</span>
+        <span class="amenity-pill"><span class="amenity-icon">🌱</span> Eco Friendly Growth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floor Plan -->
+  <section id="floorplan" class="floorplan-section">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label">Floor Plan</div>
+        <h2 class="section-title">Interior Layout</h2>
+        <p class="section-text" style="margin: 0 auto; color: rgba(255,255,255,0.5);">An architectural overview of the property's internal configuration. Total area: immeasurable. All rooms have been professionally assessed for emotional load bearing capacity.</p>
+      </div>
+      <div class="floorplan reveal">
+        <div class="fp-compass">N</div>
+        <div class="floorplan-grid">
+          <div class="fp-room large">
+            <span class="fp-room-name">The Empathy Suite</span>
+            <span class="fp-room-size">Primary &bull; 45m&sup2;</span>
+          </div>
+          <div class="fp-room">
+            <span class="fp-room-name">Coaching Command Center</span>
+            <span class="fp-room-size">Operations &bull; 28m&sup2;</span>
+          </div>
+          <div class="fp-room tall">
+            <span class="fp-room-name">The Level Up Loft</span>
+            <span class="fp-room-size">Upper &bull; 35m&sup2;</span>
+          </div>
+          <div class="fp-room">
+            <span class="fp-room-name">The Breakthrough Lounge</span>
+            <span class="fp-room-size">Social &bull; 32m&sup2;</span>
+          </div>
+          <div class="fp-room">
+            <span class="fp-room-name">Walk in Confidence Closet</span>
+            <span class="fp-room-size">Storage &bull; 18m&sup2;</span>
+          </div>
+          <div class="fp-room large">
+            <span class="fp-room-name">Reflection Pool (figurative)</span>
+            <span class="fp-room-size">Wellness &bull; 40m&sup2;</span>
+          </div>
+          <div class="fp-room condemned">
+            <span class="fp-room-name">Panic Room (old limiting beliefs)</span>
+            <span class="fp-room-size">Condemned &bull; 0m&sup2;</span>
+          </div>
+        </div>
+        <div class="fp-legend">
+          <div class="fp-legend-item">
+            <div class="fp-legend-swatch"></div>
+            Active Space
+          </div>
+          <div class="fp-legend-item">
+            <div class="fp-legend-swatch condemned"></div>
+            Condemned (no longer in use)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhood -->
+  <section id="neighborhood">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Neighborhood Guide</div>
+        <h2 class="section-title">Location, Location, Transformation</h2>
+        <p class="section-text">Located in the prestigious Cape Town basin, this property benefits from proximity to Table Mountain (for perspective), the Atlantic Ocean (for depth), and an ever growing community of humans who didn't know they needed coaching until they met her.</p>
+      </div>
+      <div class="neighborhood-grid">
+        <div class="neighborhood-map reveal">
+          <div class="map-grid"></div>
+          <!-- Roads -->
+          <div class="map-road h" style="top: 35%; left: 10%; width: 80%;"></div>
+          <div class="map-road h" style="top: 65%; left: 5%; width: 90%;"></div>
+          <div class="map-road v" style="left: 30%; top: 10%; height: 80%;"></div>
+          <div class="map-road v" style="left: 60%; top: 15%; height: 70%;"></div>
+          <!-- Pins -->
+          <div class="map-pin" style="top: 50%; left: 45%;">
+            <div class="map-pin-dot main"></div>
+            <span class="map-pin-label">Lauri Burke</span>
+          </div>
+          <div class="map-pin" style="top: 22%; left: 35%;">
+            <div class="map-pin-dot"></div>
+            <span class="map-pin-label">Table Mountain</span>
+          </div>
+          <div class="map-pin" style="top: 75%; left: 20%;">
+            <div class="map-pin-dot"></div>
+            <span class="map-pin-label">Atlantic Ocean</span>
+          </div>
+          <div class="map-pin" style="top: 40%; left: 72%;">
+            <div class="map-pin-dot"></div>
+            <span class="map-pin-label">SACAP</span>
+          </div>
+          <div class="map-pin" style="top: 60%; left: 65%;">
+            <div class="map-pin-dot"></div>
+            <span class="map-pin-label">Growth District</span>
+          </div>
+        </div>
+        <div class="neighborhood-features reveal" style="transition-delay: 0.15s;">
+          <div class="neighborhood-item">
+            <div class="neighborhood-item-distance">0.0 km away</div>
+            <div class="neighborhood-item-title">Table Mountain (Perspective)</div>
+            <p class="neighborhood-item-text">When you need to see the bigger picture, nothing beats 1,085 metres of ancient sandstone reminding you that your problems are geologically insignificant.</p>
+          </div>
+          <div class="neighborhood-item">
+            <div class="neighborhood-item-distance">Steps from the property</div>
+            <div class="neighborhood-item-title">The Atlantic Ocean (Depth)</div>
+            <p class="neighborhood-item-text">A vast body of emotional range, always present, always moving. Much like Lauri's coaching style, it meets you wherever you are.</p>
+          </div>
+          <div class="neighborhood-item">
+            <div class="neighborhood-item-distance">Within the property</div>
+            <div class="neighborhood-item-title">SACAP Qualifications (Structural Certification)</div>
+            <p class="neighborhood-item-text">Certified by the South African College of Applied Psychology, guaranteeing that this property's psychological foundations exceed all regulatory standards.</p>
+          </div>
+          <div class="neighborhood-item">
+            <div class="neighborhood-item-distance">Expanding radius</div>
+            <div class="neighborhood-item-title">The Community</div>
+            <p class="neighborhood-item-text">A thriving network of humans who have been permanently upgraded. They gather regularly, speak in full sentences about their feelings, and tip generously.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Virtual Tour -->
+  <section id="tour" class="tour-section">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label">Virtual Tour</div>
+        <h2 class="section-title">Walk Through the Property</h2>
+        <p class="section-text" style="margin: 0 auto;">Click "Enter" on any room to experience what awaits inside. Please remove your shoes and limiting beliefs before entering.</p>
+      </div>
+      <div class="tour-rooms">
+        <div class="tour-room reveal">
+          <div class="tour-room-header" onclick="toggleRoom(this)">
+            <span class="tour-room-name">The Empathy Suite</span>
+            <span class="tour-room-enter">Enter</span>
+          </div>
+          <div class="tour-room-content">
+            <div class="tour-room-content-inner">
+              The primary living space of the entire property. When you enter, you immediately feel understood. The acoustics are engineered so that every word you speak is heard fully, without distortion. The furniture arranges itself around your needs. Previous visitors report feeling "seen for the first time in years." Warning: you may cry. That's a feature, not a defect.
+            </div>
+          </div>
+        </div>
+        <div class="tour-room reveal" style="transition-delay: 0.05s;">
+          <div class="tour-room-header" onclick="toggleRoom(this)">
+            <span class="tour-room-name">Coaching Command Center</span>
+            <span class="tour-room-enter">Enter</span>
+          </div>
+          <div class="tour-room-content">
+            <div class="tour-room-content-inner">
+              The operational heart of the property. Equipped with SACAP certified instruments for measuring personal growth velocity, a dashboard displaying your untapped potential in real time, and a whiteboard that somehow always has the exact question you needed to hear. Climate controlled to maintain optimal breakthrough temperature.
+            </div>
+          </div>
+        </div>
+        <div class="tour-room reveal" style="transition-delay: 0.1s;">
+          <div class="tour-room-header" onclick="toggleRoom(this)">
+            <span class="tour-room-name">The Breakthrough Lounge</span>
+            <span class="tour-room-enter">Enter</span>
+          </div>
+          <div class="tour-room-content">
+            <div class="tour-room-content-inner">
+              Designed specifically for those "aha" moments. The lighting shifts automatically when you're on the verge of a realization. The sofa is strategically uncomfortable enough to prevent complacency but supportive enough that you feel held. There's a tissue dispenser built into every surface. It sees a lot of use.
+            </div>
+          </div>
+        </div>
+        <div class="tour-room reveal" style="transition-delay: 0.15s;">
+          <div class="tour-room-header" onclick="toggleRoom(this)">
+            <span class="tour-room-name">Walk in Confidence Closet</span>
+            <span class="tour-room-enter">Enter</span>
+          </div>
+          <div class="tour-room-content">
+            <div class="tour-room-content-inner">
+              You enter timid. You leave wearing an invisible but unmistakable outfit called "I know exactly who I am." The shelves are stocked with every version of confidence you could need: quiet confidence, bold confidence, "I'm going to ask for that raise" confidence, and the rare but devastating "I don't need your approval" confidence. Fully stocked at all times.
+            </div>
+          </div>
+        </div>
+        <div class="tour-room reveal" style="transition-delay: 0.2s;">
+          <div class="tour-room-header" onclick="toggleRoom(this)">
+            <span class="tour-room-name">The Level Up Loft</span>
+            <span class="tour-room-enter">Enter</span>
+          </div>
+          <div class="tour-room-content">
+            <div class="tour-room-content-inner">
+              The highest point in the property, both literally and metaphorically. Accessible only after you've done the work in the other rooms. The view from up here is extraordinary: you can see your past self waving from the ground floor, looking proud. There's a standing desk because you've stopped sitting on your potential. The WiFi password is "YouDeserveThis."
+            </div>
+          </div>
+        </div>
+        <div class="tour-room reveal" style="transition-delay: 0.25s;">
+          <div class="tour-room-header" onclick="toggleRoom(this)">
+            <span class="tour-room-name">Reflection Pool (Figurative)</span>
+            <span class="tour-room-enter">Enter</span>
+          </div>
+          <div class="tour-room-content">
+            <div class="tour-room-content-inner">
+              A space for stillness. The water is metaphorical, but the clarity is real. When you look into the pool, you don't see your reflection. You see the version of yourself that Lauri already sees. It's disconcerting at first because that person looks really capable and together. You'll get used to it. Everyone does.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparable Properties -->
+  <section>
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label">Market Analysis</div>
+        <h2 class="section-title">Comparable Properties</h2>
+        <p class="section-text" style="margin: 0 auto;">A transparent comparison with similar listings currently on the market. Data sourced from extensive field research and a general sense of disappointment.</p>
+      </div>
+      <div class="comp-table-wrapper reveal">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Certification</th>
+              <th>Approach</th>
+              <th>Emotional Ceilings</th>
+              <th>Results</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="comp-highlight">
+              <td>Lauri Burke <span class="comp-badge">Featured</span></td>
+              <td>SACAP Certified Transformation Architecture</td>
+              <td>Psychology backed, evidence based, actual science</td>
+              <td>Cathedral grade</td>
+              <td>Permanent structural upgrades</td>
+            </tr>
+            <tr>
+              <td class="comp-dim">Generic Life Coach A</td>
+              <td class="comp-dim">Completed a weekend workshop in Bali</td>
+              <td class="comp-dim">Motivational poster energy</td>
+              <td class="comp-dim">Basement level</td>
+              <td class="comp-dim">Temporary enthusiasm, fades by Tuesday</td>
+            </tr>
+            <tr>
+              <td class="comp-dim">Instagram Guru B</td>
+              <td class="comp-dim">Self certified via bio update</td>
+              <td class="comp-dim">"Just manifest it"</td>
+              <td class="comp-dim">Ground floor at best</td>
+              <td class="comp-dim">Great content, zero substance</td>
+            </tr>
+            <tr>
+              <td class="comp-dim">Wellness Influencer C</td>
+              <td class="comp-dim">Watched a TED Talk once</td>
+              <td class="comp-dim">Crystals and vague intentions</td>
+              <td class="comp-dim">Attic (cramped)</td>
+              <td class="comp-dim">You'll feel inspired for exactly one shower</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section style="background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label">Previous Occupant Reviews</div>
+        <h2 class="section-title">What Former Residents Say</h2>
+        <p class="section-text" style="margin: 0 auto;">Verified reviews from individuals who have experienced the Burke property firsthand. All reviews reflect genuine stays in the Lauri Burke experience.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I moved in thinking I just needed a small renovation. Turns out the entire foundation needed rebuilding. Lauri didn't judge the state of the place. She just handed me a hard hat, said 'let's go,' and now I have load bearing self worth for the first time in thirty years."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-name">Former Skeptic, 34</div>
+              <div class="review-date">Reviewed 3 months ago</div>
+              <div class="review-verified">✓ Verified Transformation</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="transition-delay: 0.1s;">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Before Lauri, I was living in a cramped studio apartment of the mind. Now I have an open plan penthouse with panoramic views of my own capability. The neighbours (my family) have noticed the renovation and keep asking for the contractor's number."</p>
+          <div class="review-author">
+            <div class="review-avatar">T</div>
+            <div>
+              <div class="review-name">Proud Penthouse Owner, 41</div>
+              <div class="review-date">Reviewed 6 weeks ago</div>
+              <div class="review-verified">✓ Verified Transformation</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal" style="transition-delay: 0.2s;">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Five stars is not enough. I need a sixth star. I need a star that hasn't been invented yet. I walked in with anxiety I'd been storing in every room and Lauri helped me do a full Marie Kondo on my entire emotional property. Turns out most of it did not spark joy."</p>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div>
+              <div class="review-name">Newly Decluttered, 28</div>
+              <div class="review-date">Reviewed 2 months ago</div>
+              <div class="review-verified">✓ Verified Transformation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <div class="cta-banner">
+    <div class="container reveal">
+      <div class="cta-banner-title">This Property Won't Be on the Market Forever</div>
+      <p class="cta-banner-text">Exceptional listings attract exceptional interest. Don't let someone else schedule the viewing you've been thinking about.</p>
+      <a href="https://www.instagram.com/level_up_with_lauri/" target="_blank" class="cta-banner-btn">Schedule a Viewing →</a>
+    </div>
   </div>
-</nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="hero">
-  <div class="hero-badge">Now Streaming &bull; Season 1</div>
-  <h1 class="display hero-title">The Extraordinary Migration of <em>Lauri Burke</em></h1>
-  <p class="hero-subtitle">A groundbreaking nature documentary following the world's rarest coaching species through her natural habitat in Cape Town, South Africa. Witness the phenomenon scientists are calling "spontaneous personal growth."</p>
-  <div class="hero-meta">
-    <span>📍 Cape Town, South Africa</span>
-    <span>🎬 6 Episodes</span>
-    <span>⭐ 9.7 / 10</span>
-    <span>🔬 SACAP Certified</span>
+  <!-- Mortgage Calculator -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <div class="section-label">Investment Calculator</div>
+        <h2 class="section-title" style="color: var(--white);">What Will This Cost You?</h2>
+      </div>
+      <div class="calc-box reveal">
+        <div class="calc-field">
+          <label class="calc-label">Your Current Situation</label>
+          <input type="text" class="calc-input" id="calcSituation" placeholder="e.g. Stuck, overwhelmed, underperforming...">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Years Spent Thinking About Changing</label>
+          <input type="number" class="calc-input" id="calcYears" placeholder="Be honest">
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Number of Self Help Books Purchased but Not Finished</label>
+          <input type="number" class="calc-input" id="calcBooks" placeholder="We won't judge">
+        </div>
+        <button class="calc-btn" onclick="calculateInvestment()">Calculate Your Investment</button>
+        <div class="calc-result" id="calcResult">
+          <div class="calc-result-value" id="calcResultValue"></div>
+          <div class="calc-result-note" id="calcResultNote"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agent Card -->
+  <section id="agent" class="agent-section">
+    <div class="container">
+      <div class="reveal" style="text-align: center; margin-bottom: 3rem;">
+        <div class="section-label">Listing Agent</div>
+        <h2 class="section-title">Your Point of Contact</h2>
+      </div>
+      <div class="agent-card reveal">
+        <div class="agent-photo">
+          <div class="agent-photo-label">Lead Agent</div>
+        </div>
+        <div class="agent-info">
+          <div class="agent-agency">Level Up Properties &bull; Cape Town</div>
+          <div class="agent-name">Lauri Burke</div>
+          <p class="agent-title-text">Senior Transformation Specialist &bull; SACAP Certified &bull; Cape Town, Western Cape</p>
+          <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.7;">For private viewings, consultations, and general inquiries about investing in the most important property you'll ever own (yourself), contact the listing agent directly.</p>
+          <div class="agent-contact-row">
+            <a href="https://www.instagram.com/level_up_with_lauri/" target="_blank" class="agent-btn agent-btn-primary">📸 &nbsp;Instagram</a>
+            <a href="https://www.instagram.com/level_up_with_lauri/" target="_blank" class="agent-btn agent-btn-secondary">Schedule a Viewing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Level Up Properties</div>
+      <p class="footer-text">
+        Cape Town, Western Cape, South Africa<br>
+        A division of Level Up with Lauri &bull; All transformations reserved
+      </p>
+      <p class="footer-disclaimer">
+        This listing is presented for entertainment purposes and genuine admiration. No actual real estate transaction is implied, though the personal growth is very real. The property (Lauri Burke) retains full ownership of herself at all times. Equal opportunity transformation provider.
+      </p>
+      <p class="footer-egg">This property was listed by a very impressed AI</p>
+    </div>
+  </footer>
+
+  <!-- Sticky Inquiry Bar -->
+  <div class="inquiry-bar" id="inquiryBar">
+    <div class="inquiry-bar-info">
+      <span class="inquiry-bar-title">Lauri Burke &bull; Exclusive Listing</span>
+      <span class="inquiry-bar-price" id="barPrice">R∞ | Priceless</span>
+    </div>
+    <a href="https://www.instagram.com/level_up_with_lauri/" target="_blank">
+      <button class="inquiry-bar-btn">Inquire Now</button>
+    </a>
   </div>
-</section>
 
-<!-- ===== SPECIES CLASSIFICATION ===== -->
-<section class="species-section" id="species">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="label">Official Field Classification</p>
-      <h2 class="display section-title">Species Identification Card</h2>
-      <p class="section-desc">First catalogued in 2019 by researchers at the South African College of Applied Psychology. Status: Extraordinary.</p>
-    </div>
-    <div class="species-card reveal">
-      <div class="species-header">
-        <div class="species-header-title">Specimen Registry</div>
-        <div class="species-header-id">Ref. No. LB-CPT-001</div>
-      </div>
-      <div class="species-body">
-        <div class="species-name">Homo Transcendicus Burkensis</div>
-        <div class="taxonomy-grid">
-          <div class="taxonomy-row"><span class="taxonomy-label">Kingdom</span><span class="taxonomy-value">Inspirata</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Phylum</span><span class="taxonomy-value">Motivata</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Class</span><span class="taxonomy-value">Transformicus</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Order</span><span class="taxonomy-value">Leveluppicus</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Family</span><span class="taxonomy-value">Burkidae</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Genus</span><span class="taxonomy-value">Coach</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Species</span><span class="taxonomy-value">burkensis</span></div>
-          <div class="taxonomy-row"><span class="taxonomy-label">Habitat</span><span class="taxonomy-value">Cape Town, ZA</span></div>
-        </div>
-        <div class="species-note">
-          FIELD NOTE: This specimen exhibits a remarkable behavioral pattern known as "the Level Up call," a signature vocalization used to rally nearby humans into states of unprecedented motivation. First documented at SACAP research facility where the Burke spent years studying the behavioral patterns of the human species. Researchers warn: do not make direct eye contact unless prepared for profound self reflection.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <script>
+    // Console Easter Egg
+    console.log("%cLooking under the hood?", "font-size: 18px; font-weight: bold; color: #1a2744;");
+    console.log("%cLauri would appreciate that growth mindset.", "font-size: 14px; color: #c4a265;");
+    console.log("%c🏠 Property Ref: #LEVELUP001 | Status: Priceless", "font-size: 11px; color: #6b6b6b;");
 
-<!-- ===== EPISODE GUIDE ===== -->
-<section id="episodes">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="label">Season One</p>
-      <h2 class="display section-title">Episode Guide</h2>
-      <p class="section-desc">Six cinematic chapters documenting the most compelling coaching migration ever recorded on the African continent.</p>
-    </div>
-    <div class="episodes-grid">
-
-      <div class="episode-card reveal" onclick="toggleEpisode(this)">
-        <div class="episode-thumb"><div class="episode-thumb-bg ep-bg-1"></div>
-          <span class="episode-number">Episode 1</span>
-          <span class="episode-duration">48 min</span>
-          <div class="episode-play"></div>
-        </div>
-        <div class="episode-info">
-          <div class="episode-title">First Contact</div>
-          <div class="episode-teaser">The initial discovery of Homo Transcendicus Burkensis in its natural habitat.</div>
-        </div>
-        <div class="episode-expand"><div class="episode-full">
-          The research team first encounters the Burke at a Cape Town coffee shop, where she has been documented converting skeptics into believers in a single conversation. "We were simply observing the local fauna," recalls lead researcher Dr. Hendriks, "when we noticed every human within a five meter radius suddenly sitting up straighter and making intense eye contact with their own reflections." The Burke had begun coaching. There was no stopping it.
-        </div></div>
-      </div>
-
-      <div class="episode-card reveal reveal-delay-1" onclick="toggleEpisode(this)">
-        <div class="episode-thumb"><div class="episode-thumb-bg ep-bg-2"></div>
-          <span class="episode-number">Episode 2</span>
-          <span class="episode-duration">52 min</span>
-          <div class="episode-play"></div>
-        </div>
-        <div class="episode-info">
-          <div class="episode-title">The SACAP Years</div>
-          <div class="episode-teaser">Years spent studying human behavioral patterns at the prestigious SACAP research facility.</div>
-        </div>
-        <div class="episode-expand"><div class="episode-full">
-          Before the Burke could coach the world, she first had to understand it. This episode chronicles her years at the South African College of Applied Psychology, where she immersed herself in applied psychology, counselling, and coaching. Fellow students report that study groups with the Burke always ended with participants accidentally achieving personal breakthroughs. "I came to review chapter seven," one classmate recalls. "I left having forgiven my father."
-        </div></div>
-      </div>
-
-      <div class="episode-card reveal reveal-delay-2" onclick="toggleEpisode(this)">
-        <div class="episode-thumb"><div class="episode-thumb-bg ep-bg-3"></div>
-          <span class="episode-number">Episode 3</span>
-          <span class="episode-duration">55 min</span>
-          <div class="episode-play"></div>
-        </div>
-        <div class="episode-info">
-          <div class="episode-title">The Cape Town Incident</div>
-          <div class="episode-teaser">When an entire neighbourhood began exhibiting signs of spontaneous personal growth.</div>
-        </div>
-        <div class="episode-expand"><div class="episode-full">
-          In what scientists now call "The Cape Town Incident," residents of a four block radius surrounding the Burke's coaching practice began displaying extraordinary behavioral changes. Productivity increased 340%. Journaling supplies sold out across three suburbs. A local barista reported that customers stopped ordering "the usual" and started ordering "what they actually wanted." Authorities were baffled. The Burke was simply doing her job.
-        </div></div>
-      </div>
-
-      <div class="episode-card reveal" onclick="toggleEpisode(this)">
-        <div class="episode-thumb"><div class="episode-thumb-bg ep-bg-4"></div>
-          <span class="episode-number">Episode 4</span>
-          <span class="episode-duration">50 min</span>
-          <div class="episode-play"></div>
-        </div>
-        <div class="episode-info">
-          <div class="episode-title">The Level Up Call</div>
-          <div class="episode-teaser">Documenting the Burke's signature vocalization and its extraordinary effects on nearby humans.</div>
-        </div>
-        <div class="episode-expand"><div class="episode-full">
-          Every species has its signature call. For the Burke, it is the phrase "Level Up," a vocalization so potent it has been known to cause immediate shifts in perspective, posture, and life trajectory. Sound engineers attempted to isolate the frequency. They could not. "It's not the words," concluded Dr. Patel. "It's the conviction behind them. Also, possibly magic. We cannot rule out magic."
-        </div></div>
-      </div>
-
-      <div class="episode-card reveal reveal-delay-1" onclick="toggleEpisode(this)">
-        <div class="episode-thumb"><div class="episode-thumb-bg ep-bg-5"></div>
-          <span class="episode-number">Episode 5</span>
-          <span class="episode-duration">58 min</span>
-          <div class="episode-play"></div>
-        </div>
-        <div class="episode-info">
-          <div class="episode-title">There Is No Going Back</div>
-          <div class="episode-teaser">Following subjects who entered the Burke Effect radius and emerged permanently transformed.</div>
-        </div>
-        <div class="episode-expand"><div class="episode-full">
-          This episode follows twelve individuals who entered what researchers now call "the Burke Effect radius" and found themselves unable to return to their previous level of existence. "I tried to go back to not caring about my potential," says Subject #23, visibly emotional. "I can't. She ruined mediocrity for me. I am devastatingly inspired and I cannot turn it off." The research team notes that not a single subject has filed a complaint. Most have sent thank you cards.
-        </div></div>
-      </div>
-
-      <div class="episode-card reveal reveal-delay-2" onclick="toggleEpisode(this)">
-        <div class="episode-thumb"><div class="episode-thumb-bg ep-bg-6"></div>
-          <span class="episode-number">Episode 6</span>
-          <span class="episode-duration">62 min</span>
-          <div class="episode-play"></div>
-        </div>
-        <div class="episode-info">
-          <div class="episode-title">The Migration Continues</div>
-          <div class="episode-teaser">As the Burke's influence expands beyond Cape Town, the world braces for impact.</div>
-        </div>
-        <div class="episode-expand"><div class="episode-full">
-          In the season finale, satellite imagery reveals that the Burke's coaching radius is expanding. Instagram account @level_up_with_lauri has become a digital migration route, drawing humans from across the globe into her field of influence. "We thought it was contained to Cape Town," whispers a visibly shaken researcher. "We were wrong. She has WiFi now. Nobody is safe from becoming their best self."
-        </div></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== CRITIC REVIEWS ===== -->
-<section class="reviews-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="label">Critical Acclaim</p>
-      <h2 class="display section-title">What They're Saying</h2>
-    </div>
-    <div class="reviews-scroll reveal">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"Devastatingly inspirational."</div>
-        <div class="review-source">The Cape Times</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"I went in a skeptic. I left... leveled."</div>
-        <div class="review-source">Anonymous Subject #47</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"We sent a film crew. They came back life coaches."</div>
-        <div class="review-source">BBC Earth (Internal Memo)</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"The most dangerous documentary since Planet Earth. Viewers may experience sudden clarity."</div>
-        <div class="review-source">National Geographic</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">"I was just the cameraman. Now I have a five year plan and a gratitude journal."</div>
-        <div class="review-source">Dave, Camera Operator</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FIELD RESEARCHER NOTES ===== -->
-<section id="fieldnotes">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="label">Declassified</p>
-      <h2 class="display section-title">Field Researcher Notes</h2>
-      <p class="section-desc">Recovered observations from scientists who ventured too close to the Burke Effect radius. Several were never the same.</p>
-    </div>
-    <div class="field-notes-grid">
-      <div class="field-note reveal" style="--rotate: -1.5deg;">
-        <div class="field-note-date">Day 3 — 06:42 AM</div>
-        <div class="field-note-body">Observed the Burke preparing what appears to be a morning ritual involving coffee and intention setting. Attempted to maintain scientific objectivity. Failed. Have now set three personal intentions of my own. Requesting reassignment.</div>
-        <div class="field-note-sig">Dr. M. Hendriks, Lead Researcher</div>
-      </div>
-      <div class="field-note reveal reveal-delay-1" style="--rotate: 1deg;">
-        <div class="field-note-date">Day 7 — 14:15 PM</div>
-        <div class="field-note-body">The Burke engaged a test subject in what she calls a "coaching session." Within 22 minutes the subject had identified three limiting beliefs, cried twice (productively), and outlined a career change. I was only observing through the window and somehow also feel motivated. This is deeply concerning.</div>
-        <div class="field-note-sig">Prof. A. Nkosi, Behavioral Analyst</div>
-      </div>
-      <div class="field-note reveal reveal-delay-2" style="--rotate: -0.5deg;">
-        <div class="field-note-date">Day 12 — 09:30 AM</div>
-        <div class="field-note-body">UPDATE: Three members of the research team have quit to "pursue their passions." Dr. Hendriks is writing a memoir. Prof. Nkosi has enrolled in a pottery class. I am the only one left and I have started journaling. Send help. Or don't. I think I'm growing.</div>
-        <div class="field-note-sig">R. Abrams, Sole Remaining Researcher</div>
-      </div>
-      <div class="field-note reveal" style="--rotate: 0.8deg;">
-        <div class="field-note-date">Day 19 — 17:00 PM</div>
-        <div class="field-note-body">FINAL ENTRY: The Burke smiled at me today. Direct eye contact. I understand everything now. Resigning from field research to become a wellness coach. Tell my family I love them. Tell them I have finally leveled up.</div>
-        <div class="field-note-sig">R. Abrams, Former Researcher, Current Life Coach</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FIELD OBSERVATION LOG (SLIDERS) ===== -->
-<section class="observation-section" id="fieldlog">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="label">Interactive Assessment</p>
-      <h2 class="display section-title">Field Observation Log</h2>
-      <p class="section-desc">Calibrate your personal readings. How close are you to requiring a Burke intervention?</p>
-    </div>
-    <div class="observation-box reveal">
-      <div class="observation-header">
-        <h3>Subject Self Assessment Form</h3>
-        <p>Adjust each metric honestly. The Burke can sense dishonesty.</p>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Current Motivation Level</span>
-          <span class="slider-value" id="val-motivation">5</span>
-        </div>
-        <input type="range" min="1" max="10" value="5" id="slider-motivation" oninput="updateSlider('motivation')">
-        <div class="slider-labels-row"><span>Dormant</span><span>Transcendent</span></div>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Self Awareness Index</span>
-          <span class="slider-value" id="val-awareness">5</span>
-        </div>
-        <input type="range" min="1" max="10" value="5" id="slider-awareness" oninput="updateSlider('awareness')">
-        <div class="slider-labels-row"><span>Blissfully Unaware</span><span>Enlightened</span></div>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Resistance to Personal Growth</span>
-          <span class="slider-value" id="val-resistance">5</span>
-        </div>
-        <input type="range" min="1" max="10" value="5" id="slider-resistance" oninput="updateSlider('resistance')">
-        <div class="slider-labels-row"><span>Fully Open</span><span>Impenetrable</span></div>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Frequency of Saying "I'm Fine"</span>
-          <span class="slider-value" id="val-fine">5</span>
-        </div>
-        <input type="range" min="1" max="10" value="5" id="slider-fine" oninput="updateSlider('fine')">
-        <div class="slider-labels-row"><span>Never</span><span>It's My Catchphrase</span></div>
-      </div>
-
-      <div class="slider-group">
-        <div class="slider-label">
-          <span>Readiness to Level Up</span>
-          <span class="slider-value" id="val-ready">5</span>
-        </div>
-        <input type="range" min="1" max="10" value="5" id="slider-ready" oninput="updateSlider('ready')">
-        <div class="slider-labels-row"><span>Maybe Next Year</span><span>Take Me Now</span></div>
-      </div>
-
-      <div class="observation-result" id="observationResult">
-        <div class="result-level" id="resultLevel">5.0</div>
-        <div class="result-classification" id="resultClass">CLASSIFICATION: MODERATE POTENTIAL — COACHING RECOMMENDED</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SPECIMEN PROXIMITY ALERT ===== -->
-<section class="proximity-section" id="proximity">
-  <div class="container" style="position: relative; z-index: 2;">
-    <div class="section-header reveal" style="margin-bottom: 2rem;">
-      <p class="label">Live Detection System</p>
-      <h2 class="display section-title">Specimen Proximity Alert</h2>
-      <p class="section-desc">Move your cursor to measure your distance from the Burke Effect epicenter. Approach with caution.</p>
-    </div>
-  </div>
-  <div class="proximity-field" id="proximityField">
-    <div class="proximity-rings">
-      <div class="proximity-ring ring-1"></div>
-      <div class="proximity-ring ring-2"></div>
-      <div class="proximity-ring ring-3"></div>
-      <div class="proximity-ring ring-4"></div>
-    </div>
-    <div class="proximity-center"></div>
-    <div class="proximity-label">H.T. Burkensis</div>
-    <div class="proximity-cursor" id="proxCursor"></div>
-    <div class="proximity-hud">
-      <div class="hud-item">
-        <div class="hud-label">Distance</div>
-        <div class="hud-value" id="hudDistance">--- m</div>
-      </div>
-      <div class="hud-item">
-        <div class="hud-label">Threat Level</div>
-        <div class="hud-value" id="hudThreat">SCANNING</div>
-      </div>
-      <div class="hud-item">
-        <div class="hud-label">Growth Risk</div>
-        <div class="hud-value" id="hudRisk">CALCULATING</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== WARNING SECTION ===== -->
-<section class="warning-section">
-  <div class="container">
-    <div class="warning-box reveal">
-      <div class="warning-icon">🔬</div>
-      <div class="warning-title">Official Health Advisory</div>
-      <div class="warning-text">
-        The Burke Nature Institute has classified "motivation" as potentially contagious when transmitted via direct coaching, Instagram content, or prolonged proximity to Lauri Burke. The following symptoms have been reported by exposed individuals:
-      </div>
-      <div class="warning-symptoms">
-        <div class="symptom">Sudden urge to set meaningful goals</div>
-        <div class="symptom">Involuntary journaling</div>
-        <div class="symptom">Decreased tolerance for mediocrity</div>
-        <div class="symptom">Spontaneous acts of self compassion</div>
-        <div class="symptom">Uncontrollable desire to "level up"</div>
-        <div class="symptom">Persistent belief in one's own potential</div>
-        <div class="symptom">Unexplained feelings of empowerment</div>
-        <div class="symptom">Chronic optimism (no known cure)</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="cta-section" id="follow">
-  <div class="container reveal">
-    <p class="label">Enter the Burke Effect Radius</p>
-    <h2 class="display cta-title">Follow the Migration</h2>
-    <p class="cta-desc">Track the Burke's movements, coaching dispatches, and field reports from the frontlines of personal transformation. Viewer discretion advised.</p>
-    <a href="https://www.instagram.com/level_up_with_lauri/" target="_blank" class="cta-link">📡 @level_up_with_lauri</a>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="container">
-    <p class="footer-logo">LEVELED</p>
-    <p class="footer-tagline">A Burke Nature Institute Production &bull; Cape Town, South Africa</p>
-    <p class="footer-disclaimer">This website is a celebration made with admiration. Lauri Burke is a real, extraordinary human doing real, extraordinary work in coaching and personal development through Level Up with Lauri. No researchers were harmed in the making of this documentary. Several were profoundly improved.</p>
-  </div>
-</footer>
-
-<!-- ===== KONAMI EASTER EGG ===== -->
-<div class="konami-overlay" id="konamiOverlay">
-  <h2>🎬 SEASON 2 CONFIRMED</h2>
-  <p>You've unlocked the classified Season 2 announcement. Working title: "LEVELED: The Burke Effect Goes Global." Filming begins wherever Lauri Burke happens to be standing. The entire planet is now considered a set.</p>
-  <button class="konami-close" onclick="document.getElementById('konamiOverlay').classList.remove('active')">Return to Safety</button>
-</div>
-
-<script>
-  // ===== STATE =====
-  let entered = false;
-  let konamiProgress = 0;
-  const konamiCode = [38,38,40,40,37,39,37,39,66,65];
-  let secretClicks = 0;
-
-  // ===== SPLASH =====
-  document.getElementById('enterBtn').onclick = () => {
-    entered = true;
-    document.getElementById('splash').classList.add('hidden');
-    document.getElementById('navbar').classList.add('visible');
-    document.body.style.overflow = '';
-  };
-  document.body.style.overflow = 'hidden';
-
-  // ===== SCROLL REVEAL =====
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // ===== EPISODE TOGGLE =====
-  function toggleEpisode(card) {
-    const wasExpanded = card.classList.contains('expanded');
-    document.querySelectorAll('.episode-card.expanded').forEach(c => c.classList.remove('expanded'));
-    if (!wasExpanded) card.classList.add('expanded');
-  }
-
-  // ===== SLIDER UPDATES =====
-  function updateSlider(name) {
-    const val = document.getElementById('slider-' + name).value;
-    document.getElementById('val-' + name).textContent = val;
-    updateObservation();
-  }
-
-  function updateObservation() {
-    const m = +document.getElementById('slider-motivation').value;
-    const a = +document.getElementById('slider-awareness').value;
-    const r = +document.getElementById('slider-resistance').value;
-    const f = +document.getElementById('slider-fine').value;
-    const rd = +document.getElementById('slider-ready').value;
-
-    // Score: high motivation, awareness, readiness = good; high resistance, "fine" = needs coaching
-    const score = ((m + a + rd) / 3 - (r + f) / 6 + 5).toFixed(1);
-    const clamped = Math.max(1, Math.min(10, score));
-
-    document.getElementById('resultLevel').textContent = clamped;
-    const result = document.getElementById('observationResult');
-    result.style.display = 'block';
-
-    let classification;
-    if (clamped >= 8) classification = 'CLASSIFICATION: ALREADY LEVELED — THE BURKE APPROVES';
-    else if (clamped >= 6) classification = 'CLASSIFICATION: PROMISING SPECIMEN — COACHING RECOMMENDED';
-    else if (clamped >= 4) classification = 'CLASSIFICATION: MODERATE POTENTIAL — INTERVENTION ADVISED';
-    else classification = 'CLASSIFICATION: CRITICAL — IMMEDIATE BURKE EXPOSURE REQUIRED';
-
-    document.getElementById('resultClass').textContent = classification;
-  }
-
-  // ===== PROXIMITY ALERT =====
-  const proxField = document.getElementById('proximityField');
-  const proxCursor = document.getElementById('proxCursor');
-  const hudDistance = document.getElementById('hudDistance');
-  const hudThreat = document.getElementById('hudThreat');
-  const hudRisk = document.getElementById('hudRisk');
-
-  proxField.addEventListener('mousemove', (e) => {
-    const rect = proxField.getBoundingClientRect();
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
-
-    proxCursor.style.left = mx + 'px';
-    proxCursor.style.top = my + 'px';
-    proxCursor.style.display = 'block';
-
-    const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-    const maxDist = Math.sqrt(cx ** 2 + cy ** 2);
-    const normalized = dist / maxDist;
-    const meters = (normalized * 500).toFixed(0);
-
-    hudDistance.textContent = meters + ' m';
-
-    if (normalized < 0.15) {
-      hudThreat.textContent = 'CRITICAL';
-      hudThreat.className = 'hud-value danger';
-      hudRisk.textContent = '99.9%';
-      hudRisk.className = 'hud-value danger';
-      proxCursor.style.borderColor = '#c0392b';
-    } else if (normalized < 0.35) {
-      hudThreat.textContent = 'ELEVATED';
-      hudThreat.className = 'hud-value';
-      hudRisk.textContent = '74%';
-      hudRisk.className = 'hud-value';
-      proxCursor.style.borderColor = 'var(--amber)';
-    } else if (normalized < 0.6) {
-      hudThreat.textContent = 'MODERATE';
-      hudThreat.className = 'hud-value safe';
-      hudRisk.textContent = '41%';
-      hudRisk.className = 'hud-value safe';
-      proxCursor.style.borderColor = 'var(--green-light)';
-    } else {
-      hudThreat.textContent = 'MINIMAL';
-      hudThreat.className = 'hud-value safe';
-      hudRisk.textContent = '12%';
-      hudRisk.className = 'hud-value safe';
-      proxCursor.style.borderColor = 'var(--green)';
-    }
-  });
-
-  proxField.addEventListener('mouseleave', () => {
-    proxCursor.style.display = 'none';
-    hudDistance.textContent = '--- m';
-    hudThreat.textContent = 'SCANNING';
-    hudThreat.className = 'hud-value';
-    hudRisk.textContent = 'CALCULATING';
-    hudRisk.className = 'hud-value';
-  });
-
-  // ===== KONAMI CODE EASTER EGG =====
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode === konamiCode[konamiProgress]) {
-      konamiProgress++;
-      if (konamiProgress === konamiCode.length) {
-        document.getElementById('konamiOverlay').classList.add('active');
-        konamiProgress = 0;
+    // Price Easter Egg
+    let priceClicks = 0;
+    const heroPrice = document.getElementById('heroPrice');
+    heroPrice.addEventListener('click', () => {
+      priceClicks++;
+      if (priceClicks === 3) {
+        heroPrice.style.transition = 'transform 0.2s';
+        heroPrice.style.transform = 'scale(1.05)';
+        setTimeout(() => heroPrice.style.transform = 'scale(1)', 200);
       }
-    } else {
-      konamiProgress = 0;
+      if (priceClicks === 5) {
+        heroPrice.textContent = 'SOLD (to everyone she\'s ever coached)';
+        heroPrice.style.color = '#e53935';
+        heroPrice.style.transition = 'color 0.5s, transform 0.3s';
+        heroPrice.style.transform = 'scale(1.08)';
+        setTimeout(() => heroPrice.style.transform = 'scale(1)', 300);
+        document.getElementById('barPrice').textContent = 'SOLD';
+      }
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Sticky inquiry bar
+    const inquiryBar = document.getElementById('inquiryBar');
+    const heroSection = document.querySelector('.hero');
+    const barObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        inquiryBar.classList.add('visible');
+      } else {
+        inquiryBar.classList.remove('visible');
+      }
+    });
+    barObserver.observe(heroSection);
+
+    // Virtual Tour rooms
+    function toggleRoom(header) {
+      const room = header.parentElement;
+      room.classList.toggle('open');
     }
-  });
 
-  // ===== EASTER EGG 2: Click hero title 5 times =====
-  document.querySelector('.hero-title').addEventListener('click', () => {
-    secretClicks++;
-    // Burst animation
-    const burst = document.createElement('div');
-    burst.className = 'level-up-burst';
-    burst.textContent = '⬆️';
-    burst.style.left = (Math.random() * 80 + 10) + '%';
-    burst.style.top = (Math.random() * 30 + 20) + '%';
-    document.body.appendChild(burst);
-    setTimeout(() => burst.remove(), 1000);
+    // Mortgage Calculator
+    const calcResponses = [
+      { value: "Less than staying the same.", note: "Every financial advisor agrees: the most expensive thing you can do is nothing." },
+      { value: "Less than your last excuse.", note: "We ran the numbers. Your excuses have been costing you compound interest for years." },
+      { value: "Less than another decade of 'I'll start Monday.'", note: "Monday never comes. Lauri is available now." },
+      { value: "Approximately one decision.", note: "The math is simple. One decision separates you from a completely different trajectory." },
+      { value: "Less than you think. More than you're worth. (Currently.)", note: "But that's the whole point. Your value is about to appreciate dramatically." },
+    ];
 
-    if (secretClicks >= 5) {
-      secretClicks = 0;
-      // Narration easter egg
-      const msg = document.createElement('div');
-      msg.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);padding:1rem 2rem;background:rgba(212,168,83,0.95);color:#0a0f0a;font-family:"Special Elite",monospace;font-size:0.9rem;border-radius:4px;z-index:99999;animation:fadeUp 0.5s ease-out;max-width:500px;text-align:center;';
-      msg.textContent = '"And here we observe the viewer, repeatedly poking at the title, as though persistence alone might unlock the secrets of the Burke. Remarkable." — Sir David Attenborough (probably)';
-      document.body.appendChild(msg);
-      setTimeout(() => msg.remove(), 5000);
+    let calcIndex = 0;
+    function calculateInvestment() {
+      const result = document.getElementById('calcResult');
+      const value = document.getElementById('calcResultValue');
+      const note = document.getElementById('calcResultNote');
+      
+      const response = calcResponses[calcIndex % calcResponses.length];
+      calcIndex++;
+      
+      value.textContent = response.value;
+      note.textContent = response.note;
+      
+      result.classList.remove('visible');
+      void result.offsetWidth;
+      result.classList.add('visible');
     }
-  });
 
-  // ===== PARALLAX on Hero =====
-  window.addEventListener('scroll', () => {
-    if (!entered) return;
-    const hero = document.getElementById('hero');
-    const scroll = window.scrollY;
-    hero.style.backgroundPositionY = (scroll * 0.3) + 'px';
-  });
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
 
-  // ===== Initial observation calc =====
-  updateObservation();
-</script>
+    // Parallax on hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg && scrolled < window.innerHeight) {
+        heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+    });
+
+    // Gallery photo count click
+    document.querySelector('.photo-count')?.addEventListener('click', () => {
+      alert('Unfortunately, all 47 additional photos are just different angles of human potential. They all look the same: limitless.');
+    });
+  </script>
 
 </body>
 </html>

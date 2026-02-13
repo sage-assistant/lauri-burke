@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLASSIFIED — Republic of South Africa Department of Human Potential</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f0e0;
+      --bg-dark: #e8e0c8;
+      --surface: #ede6d0;
+      --ink: #1a1a18;
+      --ink-dim: #4a4a3e;
+      --red: #c0392b;
+      --red-soft: rgba(192,57,43,0.12);
+      --red-glow: rgba(192,57,43,0.3);
+      --green-dark: #2c3e2d;
+      --green-mid: #3d5c3e;
+      --green-light: #5a7d5b;
+      --khaki: #8b7d5e;
+      --khaki-light: #b5a67a;
+      --stamp-red: #b03a2e;
+      --border: rgba(0,0,0,0.15);
+      --redact: #111;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 10000;
+    }
+
+    /* SPLASH / SECURITY CLEARANCE */
+    .splash {
+      position: fixed;
+      inset: 0;
+      background: var(--green-dark);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.8s, visibility 0.8s;
+      color: #d4c9a0;
+    }
+
+    .splash.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-seal {
+      width: 120px;
+      height: 120px;
+      border: 4px solid #d4c9a0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      animation: pulse-seal 2s ease-in-out infinite;
+    }
+
+    .splash-seal::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid rgba(212,201,160,0.3);
+      border-radius: 50%;
+    }
+
+    @keyframes pulse-seal { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+    .splash-classification {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(0.7rem, 2vw, 0.85rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--stamp-red);
+      background: rgba(176,58,46,0.15);
+      padding: 0.5rem 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(176,58,46,0.3);
+    }
+
+    .splash h1 {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      margin-bottom: 0.75rem;
+      color: #e8dfc0;
+      letter-spacing: 0.05em;
+    }
+
+    .splash h2 {
+      font-family: 'Courier Prime', monospace;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      opacity: 0.7;
+    }
+
+    .splash-warning {
+      max-width: 500px;
+      font-size: 0.75rem;
+      line-height: 1.8;
+      opacity: 0.6;
+      margin-bottom: 3rem;
+    }
+
+    .enter-btn {
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 2px solid var(--stamp-red);
+      color: var(--stamp-red);
+      font-family: 'Special Elite', monospace;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .enter-btn:hover {
+      background: var(--stamp-red);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(176,58,46,0.4);
+    }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 0.6rem;
+      opacity: 0.3;
+      letter-spacing: 0.1em;
+    }
+
+    /* CLASSIFIED STAMP */
+    .stamp {
+      font-family: 'Special Elite', monospace;
+      color: var(--stamp-red);
+      border: 3px solid var(--stamp-red);
+      padding: 0.3rem 1.5rem;
+      display: inline-block;
+      transform: rotate(-3deg);
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      position: relative;
+    }
+
+    .stamp::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border: 1px solid var(--stamp-red);
+      opacity: 0.4;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      padding: 0.5rem 2rem;
+      background: var(--green-dark);
+      color: #d4c9a0;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all 0.5s;
+    }
+
+    .top-bar.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .top-bar .blink {
+      color: var(--stamp-red);
+      animation: blink 1.2s ease-in-out infinite;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* LIVE COUNTER */
+    .live-counter {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 9998;
+      padding: 1rem 1.5rem;
+      background: var(--green-dark);
+      border: 1px solid var(--green-light);
+      color: #d4c9a0;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.7rem;
+      opacity: 0;
+      transition: opacity 0.5s;
+      text-align: center;
+    }
+
+    .live-counter.visible { opacity: 1; }
+
+    .live-counter .count {
+      font-size: 1.8rem;
+      color: #7dcea0;
+      display: block;
+      margin: 0.25rem 0;
+    }
+
+    .live-counter .label-small {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* DOCUMENT STYLING */
+    .document-page {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.08);
+      padding: clamp(2rem, 5vw, 4rem);
+      margin: 2rem auto;
+      max-width: 850px;
+      position: relative;
+    }
+
+    .document-page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--green-dark);
+    }
+
+    .doc-header {
+      text-align: center;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .doc-header .dept {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-header h1 {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      color: var(--green-dark);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-header .doc-subtitle {
+      font-size: 0.8rem;
+      color: var(--ink-dim);
+    }
+
+    /* FORM FIELDS */
+    .form-row {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .form-field {
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+
+    .form-field .field-label {
+      font-weight: 700;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .form-field .field-value {
+      font-family: 'Special Elite', monospace;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      min-width: 120px;
+    }
+
+    /* REDACTED TEXT */
+    .redacted {
+      background: var(--redact);
+      color: var(--redact);
+      cursor: pointer;
+      padding: 0 4px;
+      transition: all 0.4s;
+      position: relative;
+      user-select: none;
+    }
+
+    .redacted:hover {
+      opacity: 0.8;
+    }
+
+    .redacted.revealed {
+      background: #fff9c4;
+      color: var(--ink);
+      padding: 0 4px;
+    }
+
+    .redacted::after {
+      content: '[CLICK TO DECLASSIFY]';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.55rem;
+      color: var(--stamp-red);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+
+    .redacted:hover::after { opacity: 1; }
+    .redacted.revealed::after { display: none; }
+
+    /* SECTIONS */
+    section {
+      padding: clamp(3rem, 8vw, 5rem) 0;
+    }
+
+    .section-label {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--stamp-red);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .section-number {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.7rem;
+      color: var(--khaki);
+      margin-bottom: 0.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      background: 
+        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(0,0,0,0.03) 28px, rgba(0,0,0,0.03) 29px),
+        var(--bg);
+    }
+
+    .hero-stamp {
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.2s forwards;
+    }
+
+    .hero-file-number {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--khaki);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.4s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      color: var(--green-dark);
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.6s forwards;
+    }
+
+    .hero-subject {
+      font-size: 1.1rem;
+      color: var(--ink-dim);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 0.8s forwards;
+    }
+
+    .hero-subject strong {
+      font-family: 'Special Elite', monospace;
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+
+    .hero-designation {
+      font-size: 0.85rem;
+      color: var(--stamp-red);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 1s forwards;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--ink-dim);
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out 1.2s forwards;
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* THREAT ASSESSMENT */
+    .threat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .threat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .threat-card .threat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--khaki);
+      margin-bottom: 0.5rem;
+    }
+
+    .threat-card .threat-value {
+      font-family: 'Special Elite', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .threat-critical { color: var(--stamp-red); }
+    .threat-high { color: #d35400; }
+    .threat-elevated { color: #f39c12; }
+    .threat-severe { color: var(--stamp-red); text-transform: uppercase; }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--green-dark);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      background: var(--green-dark);
+      border-radius: 50%;
+      margin-left: -4px;
+    }
+
+    .timeline-date {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.75rem;
+      color: var(--stamp-red);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-content {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    /* WITNESS STATEMENTS */
+    .witness-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .witness-card::before {
+      content: 'EXHIBIT';
+      position: absolute;
+      top: -0.5rem;
+      right: 1rem;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--stamp-red);
+      background: var(--bg);
+      padding: 0 0.5rem;
+    }
+
+    .witness-id {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.7rem;
+      color: var(--khaki);
+      margin-bottom: 0.5rem;
+    }
+
+    .witness-text {
+      font-style: italic;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .witness-source {
+      font-size: 0.7rem;
+      color: var(--ink-dim);
+      text-align: right;
+    }
+
+    /* QUIZ */
+    .quiz-box {
+      background: var(--surface);
+      border: 2px solid var(--green-dark);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .quiz-question {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-option {
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .quiz-option:hover {
+      background: var(--green-dark);
+      color: #d4c9a0;
+      border-color: var(--green-dark);
+    }
+
+    .quiz-option.selected {
+      background: var(--green-dark);
+      color: #d4c9a0;
+      border-color: var(--green-dark);
+    }
+
+    .quiz-result {
+      padding: 1.5rem;
+      background: var(--red-soft);
+      border: 1px solid var(--stamp-red);
+      font-family: 'Special Elite', monospace;
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .quiz-result.visible { display: block; animation: fadeUp 0.5s ease-out; }
+
+    .quiz-btn {
+      padding: 0.75rem 2rem;
+      background: var(--green-dark);
+      border: none;
+      color: #d4c9a0;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .quiz-btn:hover { background: var(--green-mid); }
+
+    /* THREAT CALCULATOR */
+    .calc-box {
+      background: var(--surface);
+      border: 2px solid var(--green-dark);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .calc-slider-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .calc-slider-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .calc-slider-label span:last-child {
+      font-family: 'Special Elite', monospace;
+      color: var(--stamp-red);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      outline: none;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--green-dark);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .calc-result {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: var(--bg);
+      border: 2px solid var(--stamp-red);
+      text-align: center;
+      font-family: 'Special Elite', monospace;
+    }
+
+    .calc-result .big-number {
+      font-size: 3rem;
+      color: var(--stamp-red);
+      line-height: 1;
+    }
+
+    .calc-result .result-text {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      color: var(--ink-dim);
+    }
+
+    /* CONTAINMENT */
+    .containment-box {
+      background: var(--green-dark);
+      color: #d4c9a0;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      font-family: 'Special Elite', monospace;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .containment-box::before {
+      content: 'FAILED';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      font-size: 5rem;
+      color: var(--stamp-red);
+      opacity: 0.15;
+      letter-spacing: 0.2em;
+      white-space: nowrap;
+    }
+
+    .containment-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .containment-item:last-child { border-bottom: none; }
+
+    .status-badge {
+      font-size: 0.65rem;
+      padding: 0.2rem 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .status-failed { background: var(--stamp-red); color: white; }
+    .status-pending { background: #d4a017; color: #1a1a18; }
+    .status-futile { background: rgba(255,255,255,0.1); color: #d4c9a0; }
+
+    /* INSTAGRAM INTERCEPT */
+    .intel-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .intel-box .intel-handle {
+      font-family: 'Special Elite', monospace;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .intel-box a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 2rem;
+      background: var(--green-dark);
+      color: #d4c9a0;
+      text-decoration: none;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+
+    .intel-box a:hover { background: var(--green-mid); }
+
+    /* TYPING EFFECT */
+    .typing-container {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.85rem;
+      min-height: 1.5em;
+      border-right: 2px solid var(--ink);
+      display: inline;
+      animation: cursor-blink 0.7s step-end infinite;
+      white-space: pre-wrap;
+    }
+
+    @keyframes cursor-blink { 50% { border-color: transparent; } }
+
+    /* FOOTER */
+    footer {
+      background: var(--green-dark);
+      color: #d4c9a0;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer .footer-seal {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    footer .footer-dept {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-disclaimer {
+      font-size: 0.65rem;
+      opacity: 0.5;
+      max-width: 500px;
+      margin: 1.5rem auto 0;
+      line-height: 1.7;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* COFFEE STAIN */
+    .coffee-stain {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid rgba(139, 90, 43, 0.15);
+      pointer-events: none;
+    }
+
+    /* DIAGONAL STAMP */
+    .diagonal-stamp {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: rotate(-25deg);
+      font-family: 'Special Elite', monospace;
+      font-size: 3rem;
+      color: var(--stamp-red);
+      opacity: 0.12;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .form-row { flex-direction: column; gap: 0.5rem; }
+      .threat-grid { grid-template-columns: 1fr 1fr; }
+      .hero-meta { flex-direction: column; gap: 0.5rem; }
+      .document-page { padding: 1.5rem; margin: 1rem; }
+      .live-counter { bottom: 1rem; right: 1rem; padding: 0.75rem 1rem; }
+      .containment-item { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .threat-grid { grid-template-columns: 1fr; }
+    }
+
+    /* EASTER EGG: SECRET CLEARED */
+    .clearance-granted {
+      position: fixed;
+      inset: 0;
+      background: rgba(44,62,45,0.95);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #7dcea0;
+      font-family: 'Special Elite', monospace;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s;
+    }
+
+    .clearance-granted.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .clearance-granted h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .clearance-granted p { font-size: 0.9rem; opacity: 0.7; }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash" id="splash">
+  <div class="splash-seal">🇿🇦</div>
+  <div class="splash-classification">⚠ Classified ⚠ Top Secret ⚠</div>
+  <h1>REPUBLIC OF SOUTH AFRICA</h1>
+  <h2>Department of Human Potential</h2>
+  <p class="splash-warning">
+    WARNING: The document you are about to access has been classified under the National Human Resource Preservation Act of 2019 (Section 47.3). 
+    Unauthorized viewing may result in involuntary self improvement, unexpected personal growth, and/or an overwhelming desire to "level up." 
+    By proceeding, you acknowledge that you may never be the same again.
+  </p>
+  <button class="enter-btn" id="enterBtn">CONFIRM SECURITY CLEARANCE</button>
+  <div class="splash-footer">RSA DEPT. OF HUMAN POTENTIAL • FILE ACCESS PORTAL • CLEARANCE LEVEL: OMEGA</div>
+</div>
+
+<!-- TOP BAR -->
+<div class="top-bar" id="topBar">
+  <span>DEPT. OF HUMAN POTENTIAL • CLASSIFIED DOCUMENT</span>
+  <span><span class="blink">●</span> FILE: LB-00742-OMEGA</span>
+</div>
+
+<!-- LIVE COUNTER -->
+<div class="live-counter" id="liveCounter">
+  <div class="label-small">Citizens Leveled Up</div>
+  <span class="count" id="citizenCount">12,847</span>
+  <div class="label-small">And Counting</div>
+</div>
+
+<!-- KONAMI OVERLAY -->
+<div class="clearance-granted" id="konamiOverlay">
+  <h2>🔓 OMEGA CLEARANCE GRANTED</h2>
+  <p>You have unlocked Level 6 access.</p>
+  <p style="margin-top:1rem;font-size:0.7rem;opacity:0.5">Lauri Burke has been notified of your exceptional dedication.<br>Click anywhere to return to the file.</p>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="heroSection">
+  <div class="hero-stamp"><div class="stamp">CLASSIFIED</div></div>
+  <div class="hero-file-number">FILE NO: LB-00742-OMEGA &bull; CLASSIFICATION: LEVEL 5 RESTRICTED</div>
+  <h1 class="hero-title">Subject Classification Report:<br>National Resource Identification</h1>
+  <div class="hero-subject">Subject: <strong>LAURI BURKE</strong></div>
+  <div class="hero-designation">Designation: Level 5 Human Optimization Specialist</div>
+  <div class="hero-meta">
+    <span>Base of Operations: Cape Town, Western Cape</span>
+    <span>Codename: LEVEL UP</span>
+    <span>Status: ACTIVE &amp; UNCONTAINED</span>
+  </div>
+</section>
+
+<!-- SECTION 1: SUBJECT PROFILE -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="diagonal-stamp">CLASSIFIED</div>
+      <div class="coffee-stain" style="top: -20px; right: 40px;"></div>
+      <div class="doc-header">
+        <div class="dept">Republic of South Africa • Department of Human Potential</div>
+        <h1>Subject Profile: Lauri Burke</h1>
+        <div class="doc-subtitle">Classification Dossier // Eyes Only</div>
+      </div>
+
+      <div class="section-number">SECTION 1.0 — SUBJECT IDENTIFICATION</div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <span class="field-label">Full Name:</span>
+          <span class="field-value">Lauri Burke</span>
+        </div>
+        <div class="form-field">
+          <span class="field-label">Alias:</span>
+          <span class="field-value">"Level Up with Lauri"</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <span class="field-label">Location:</span>
+          <span class="field-value">Cape Town, South Africa</span>
+        </div>
+        <div class="form-field">
+          <span class="field-label">Operational Radius:</span>
+          <span class="field-value">Expanding (see Appendix C)</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <span class="field-label">Training Facility:</span>
+          <span class="field-value">SACAP (South African College of Applied Psychology)</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <span class="field-label">Qualifications:</span>
+          <span class="field-value">Applied Psychology, Counselling, Coaching (accredited)</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <span class="field-label">Classification:</span>
+          <span class="field-value" style="color: var(--stamp-red); font-weight: 700;">NATIONAL RESOURCE — DO NOT NEUTRALIZE</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 2rem; font-size: 0.85rem; line-height: 1.8;">
+        <strong>ANALYST NOTE:</strong> Subject Burke completed advanced training at SACAP, an institution this department has flagged as a <span class="redacted">covert facility for manufacturing human optimization specialists</span>. 
+        Her qualifications in applied psychology and counselling represent what our analysts describe as <span class="redacted">the most sophisticated mind enhancement toolkit</span> currently deployed on South African soil.
+        The subject operates under the seemingly innocent brand "Level Up with Lauri," which our cryptography division has confirmed is <span class="redacted">not even a code name, she just tells people exactly what she's doing and they let her do it anyway</span>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: THREAT ASSESSMENT -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="section-number">SECTION 2.0 — THREAT LEVEL ASSESSMENT</div>
+      <div class="section-title">National Impact Evaluation</div>
+
+      <p style="font-size: 0.85rem; margin-bottom: 1.5rem;">
+        The following metrics were compiled by the Department's Behavioral Analysis Unit over a <span class="redacted">three year covert observation period</span> during which agents embedded themselves as coaching clients. NOTE: Two of the three agents subsequently resigned from government service to "pursue their authentic selves." The third requested a transfer to a less dangerous assignment. He is now monitoring volcanoes.
+      </p>
+
+      <div class="threat-grid">
+        <div class="threat-card">
+          <div class="threat-label">Risk of Mass Self Improvement</div>
+          <div class="threat-value threat-critical">CRITICAL</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label">Population Motivation Levels</div>
+          <div class="threat-value threat-high">DANGEROUSLY HIGH</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label">Containment Feasibility</div>
+          <div class="threat-value threat-elevated">UNLIKELY</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label">Public Self Actualization Index</div>
+          <div class="threat-value threat-severe">SEVERE</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label">Instagram Influence Radius</div>
+          <div class="threat-value threat-critical">EXPANDING</div>
+        </div>
+        <div class="threat-card">
+          <div class="threat-label">Resistance to Subject's Methods</div>
+          <div class="threat-value threat-severe">FUTILE</div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.8rem; color: var(--ink-dim); margin-top: 1.5rem;">
+        <em>ADDENDUM: The Western Cape Provincial Office has formally requested that the Subject be classified as a "Level 6" threat but this classification does not exist. The Department is considering creating it specifically for this case.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PERSONAL THREAT CALCULATOR -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="section-number">SECTION 3.0 — PERSONAL VULNERABILITY ASSESSMENT</div>
+      <div class="section-title">Your Threat Level Calculator</div>
+      <p style="font-size:0.85rem;margin-bottom:1.5rem;">Determine your personal risk of being "leveled up" by Subject Burke. Adjust the following parameters based on your current circumstances:</p>
+
+      <div class="calc-box">
+        <div class="calc-slider-group">
+          <div class="calc-slider-label">
+            <span>Current life satisfaction</span>
+            <span id="satisfactionVal">5</span>/10
+          </div>
+          <input type="range" id="satisfaction" min="1" max="10" value="5">
+        </div>
+        <div class="calc-slider-group">
+          <div class="calc-slider-label">
+            <span>Openness to personal growth</span>
+            <span id="opennessVal">5</span>/10
+          </div>
+          <input type="range" id="openness" min="1" max="10" value="5">
+        </div>
+        <div class="calc-slider-group">
+          <div class="calc-slider-label">
+            <span>Proximity to Cape Town (km)</span>
+            <span id="proximityVal">500</span>
+          </div>
+          <input type="range" id="proximity" min="0" max="10000" value="500" step="10">
+        </div>
+        <div class="calc-slider-group">
+          <div class="calc-slider-label">
+            <span>Times you've said "I should work on myself"</span>
+            <span id="selfworkVal">3</span>
+          </div>
+          <input type="range" id="selfwork" min="0" max="100" value="3">
+        </div>
+
+        <button class="quiz-btn" id="calcBtn" style="width:100%;margin-top:1rem;">CALCULATE THREAT LEVEL</button>
+
+        <div class="calc-result" id="calcResult" style="display:none;">
+          <div class="big-number" id="threatPercent">87%</div>
+          <div class="result-text" id="threatText">You are at EXTREME risk of personal transformation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: OPERATIONAL HISTORY -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="diagonal-stamp" style="font-size:2rem;opacity:0.08;">TOP SECRET</div>
+      <div class="section-number">SECTION 4.0 — OPERATIONAL HISTORY</div>
+      <div class="section-title">Timeline of Known Activities</div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">CLASSIFIED DATE — SACAP ENROLLMENT</div>
+          <div class="timeline-content">
+            Subject enrolled at the South African College of Applied Psychology. Department analysts initially flagged this as <span class="redacted">standard academic pursuit</span> but later revised assessment to "advanced training in human behavioral modification." SACAP's accredited programmes in applied psychology, counselling, and coaching provided the Subject with <span class="redacted">an arsenal of tools so powerful they should probably require a licence</span>.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">CLASSIFIED DATE — QUALIFICATION ACHIEVED</div>
+          <div class="timeline-content">
+            Subject completed accredited qualifications. Surveillance team reported that upon graduation, <span class="redacted">every professor in the department simultaneously felt a sense of pride they couldn't explain, even the ones who didn't teach her</span>. Department of Human Potential opened formal monitoring file.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">CLASSIFIED DATE — OPERATION "LEVEL UP" LAUNCHED</div>
+          <div class="timeline-content">
+            Subject established coaching practice under the codename "Level Up with Lauri." What appeared to be a personal development brand was identified by this department as <span class="redacted">a systematic programme to upgrade the entire population of the Western Cape, one human at a time</span>. Cape Town field office placed on high alert.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">CLASSIFIED DATE — INSTAGRAM OPERATIONS</div>
+          <div class="timeline-content">
+            Subject established digital operations via @level_up_with_lauri on Instagram. Intelligence suggests this platform serves as <span class="redacted">a broadcast system for disseminating motivational content so effective that three of our analysts had to be rotated off monitoring duty after they started journaling and setting boundaries</span>.
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">PRESENT DAY — STATUS: UNCONTAINED</div>
+          <div class="timeline-content">
+            Subject continues to operate freely from Cape Town. All containment attempts have failed. The Department formally recommends <span class="redacted">that we stop trying to contain her and instead ask if she's taking new clients because honestly several people in this office could use a session</span>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: CLASSIFIED WITNESS STATEMENTS -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="section-number">SECTION 5.0 — CLASSIFIED INFORMANT TESTIMONY</div>
+      <div class="section-title">Witness Statements (Redacted)</div>
+      <p style="font-size:0.85rem;margin-bottom:1.5rem;">The following statements were collected from individuals known to have been exposed to Subject Burke's coaching methods. Identities redacted for their protection.</p>
+
+      <div class="witness-card">
+        <div class="witness-id">INFORMANT #247 — CAPE TOWN RESIDENT</div>
+        <div class="witness-text">"I went in for one session. ONE. I was just going to see what the fuss was about. That was <span class="redacted">six months ago and I've since changed careers, fixed three relationships, and started waking up at 5 AM voluntarily</span>. I don't even recognize myself. In a good way. Is that normal? Should I be concerned?"</div>
+        <div class="witness-source">— Testimony recorded under Protocol 7, <span class="redacted">Waterfront District Safe House</span></div>
+      </div>
+
+      <div class="witness-card">
+        <div class="witness-id">INFORMANT #112 — IDENTITY CLASSIFIED</div>
+        <div class="witness-text">"She asked me one question. Just one. And somehow it <span class="redacted">unraveled an entire belief system I'd been carrying since childhood</span>. I sat in my car for forty five minutes afterwards just staring at the dashboard. I think she might be the most powerful person in the Western Cape. I said what I said."</div>
+        <div class="witness-source">— Debriefing transcript, <span class="redacted">undisclosed location, Camps Bay</span></div>
+      </div>
+
+      <div class="witness-card">
+        <div class="witness-id">INFORMANT #389 — FORMER SKEPTIC</div>
+        <div class="witness-text">"I told everyone coaching was nonsense. Absolute rubbish. My friend dragged me to see Lauri and I went in with my arms crossed. I came out with <span class="redacted">a five year plan, a gratitude journal, and an emotional vocabulary I didn't know I had</span>. My wife wants to know what she did to me because I've started communicating my feelings. I have no defense."</div>
+        <div class="witness-source">— Intercepted communication, <span class="redacted">Signal message to spouse</span></div>
+      </div>
+
+      <div class="witness-card">
+        <div class="witness-id">INFORMANT #501 — DEPARTMENT ANALYST (COMPROMISED)</div>
+        <div class="witness-text">"I was assigned to monitor Subject Burke's Instagram for potential propaganda. After three weeks of exposure, I <span class="redacted">applied for a coaching certification programme and submitted my resignation. I regret nothing. Please forward my pension to my new wellness retreat in Stellenbosch</span>."</div>
+        <div class="witness-source">— Final field report before defection</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: INTERACTIVE QUIZ -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="section-number">SECTION 6.0 — EXPOSURE ASSESSMENT</div>
+      <div class="section-title">Are You Already Under Her Influence?</div>
+      <p style="font-size:0.85rem;margin-bottom:1.5rem;">Complete the following diagnostic assessment to determine if you have already been compromised by Subject Burke's methods. Answer honestly. The Department will know if you don't.</p>
+
+      <div class="quiz-box" id="quiz">
+        <div id="quizContent">
+          <!-- Question 1 -->
+          <div class="quiz-step" data-step="0">
+            <div class="quiz-question">Q1: Have you recently felt a sudden, unexplained urge to "be a better version of yourself"?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">Yes, and it's terrifying</button>
+              <button class="quiz-option" data-score="2" onclick="selectQuiz(this)">Maybe. I bought a journal last week.</button>
+              <button class="quiz-option" data-score="1" onclick="selectQuiz(this)">No, I am perfectly stagnant, thank you</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">I don't know who I am anymore</button>
+            </div>
+          </div>
+          <!-- Question 2 -->
+          <div class="quiz-step" data-step="1" style="display:none;">
+            <div class="quiz-question">Q2: When someone says "you should talk to a coach," you:</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-score="1" onclick="selectQuiz(this)">Laugh nervously and change the subject</button>
+              <button class="quiz-option" data-score="2" onclick="selectQuiz(this)">Google "coaching near me" at 2 AM</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">Already have one. Her name is Lauri.</button>
+              <button class="quiz-option" data-score="2" onclick="selectQuiz(this)">Say "I don't need help" while clearly needing help</button>
+            </div>
+          </div>
+          <!-- Question 3 -->
+          <div class="quiz-step" data-step="2" style="display:none;">
+            <div class="quiz-question">Q3: How many times this week have you reflected on your personal growth?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-score="1" onclick="selectQuiz(this)">Zero. Growth is for plants.</button>
+              <button class="quiz-option" data-score="2" onclick="selectQuiz(this)">Once or twice, casually</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">I have a spreadsheet</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">I'm reflecting right now. While taking this quiz.</button>
+            </div>
+          </div>
+          <!-- Question 4 -->
+          <div class="quiz-step" data-step="3" style="display:none;">
+            <div class="quiz-question">Q4: When you see the phrase "Level Up," you:</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-score="1" onclick="selectQuiz(this)">Think of video games</button>
+              <button class="quiz-option" data-score="2" onclick="selectQuiz(this)">Feel a strange tingling in your ambition</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">Immediately check @level_up_with_lauri</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">Get goosebumps and don't know why</button>
+            </div>
+          </div>
+          <!-- Question 5 -->
+          <div class="quiz-step" data-step="4" style="display:none;">
+            <div class="quiz-question">Q5: Do you believe people can fundamentally change?</div>
+            <div class="quiz-options">
+              <button class="quiz-option" data-score="1" onclick="selectQuiz(this)">No. We are who we are.</button>
+              <button class="quiz-option" data-score="2" onclick="selectQuiz(this)">In theory, maybe</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">Absolutely, I've seen it happen</button>
+              <button class="quiz-option" data-score="3" onclick="selectQuiz(this)">I AM living proof</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="quiz-btn" id="quizNextBtn" style="display:none;width:100%;margin-top:1rem;" onclick="nextQuizStep()">NEXT QUESTION →</button>
+        <button class="quiz-btn" id="quizResultBtn" style="display:none;width:100%;margin-top:1rem;" onclick="showQuizResult()">SUBMIT FOR ANALYSIS</button>
+
+        <div class="quiz-result" id="quizResult">
+          <div id="quizResultText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: CONTAINMENT PROTOCOLS -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="section-number">SECTION 7.0 — CONTAINMENT PROTOCOLS</div>
+      <div class="section-title">Attempted Countermeasures</div>
+      <p style="font-size:0.85rem;margin-bottom:1.5rem;">The Department has implemented the following containment strategies over the course of <span class="redacted">multiple failed operations</span>. Results are documented below for the historical record.</p>
+
+      <div class="containment-box">
+        <div class="containment-item">
+          <span>Protocol Alpha: Limit Subject's client intake</span>
+          <span class="status-badge status-failed">FAILED</span>
+        </div>
+        <div class="containment-item">
+          <span>Protocol Beta: Restrict Instagram reach</span>
+          <span class="status-badge status-failed">FAILED</span>
+        </div>
+        <div class="containment-item">
+          <span>Protocol Gamma: Deploy counter motivational content</span>
+          <span class="status-badge status-failed">FAILED (made people more motivated)</span>
+        </div>
+        <div class="containment-item">
+          <span>Protocol Delta: Convince public that self improvement is overrated</span>
+          <span class="status-badge status-failed">FAILED (nobody believed us)</span>
+        </div>
+        <div class="containment-item">
+          <span>Protocol Epsilon: Relocate Subject away from Cape Town</span>
+          <span class="status-badge status-failed">FAILED (Cape Town refused)</span>
+        </div>
+        <div class="containment-item">
+          <span>Protocol Zeta: Just ask her nicely to stop</span>
+          <span class="status-badge status-pending">PENDING (she laughed)</span>
+        </div>
+        <div class="containment-item">
+          <span>Protocol Omega: Accept that resistance is futile</span>
+          <span class="status-badge status-futile">RECOMMENDED</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--ink-dim);margin-top:1.5rem;font-style:italic;">
+        DEPARTMENT CONCLUSION: Containment of Subject Burke is not feasible. The Department recommends full cooperation. If you cannot beat her, you should probably book a session. She is very good at what she does.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: INTELLIGENCE INTERCEPT (INSTAGRAM) -->
+<section>
+  <div class="container">
+    <div class="document-page reveal">
+      <div class="section-number">SECTION 8.0 — COMMUNICATIONS INTERCEPT</div>
+      <div class="section-title">Digital Surveillance Report</div>
+
+      <p style="font-size:0.85rem;margin-bottom:1.5rem;">
+        The Department's Digital Intelligence Unit has been monitoring Subject Burke's primary communications channel since <span class="redacted">the day she posted her first motivational quote and three agents immediately shared it on their personal accounts</span>.
+      </p>
+
+      <div class="intel-box">
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--khaki);margin-bottom:0.5rem;">PRIMARY COMMUNICATIONS CHANNEL</div>
+        <div class="intel-handle">@level_up_with_lauri</div>
+        <div style="font-size:0.8rem;color:var(--ink-dim);margin-top:0.5rem;">Platform: Instagram // Status: ACTIVE // Threat Level: HIGH</div>
+        <div style="font-size:0.75rem;color:var(--ink-dim);margin-top:0.5rem;font-style:italic;">
+          "Every post is a potential recruitment tool. The content is... annoyingly inspiring."<br>
+          — Senior Analyst, Digital Surveillance Division
+        </div>
+        <a href="https://instagram.com/level_up_with_lauri" target="_blank" rel="noopener">ACCESS SURVEILLANCE FEED →</a>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--stamp-red);margin-top:1.5rem;text-align:center;font-family:'Special Elite',monospace;">
+        ⚠ WARNING: Exposure to Subject's Instagram content may result in involuntary self reflection. Proceed with caution.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: TYPING EFFECT / FINAL ASSESSMENT -->
+<section>
+  <div class="container">
+    <div class="document-page reveal" id="typingSection">
+      <div class="section-number">SECTION 9.0 — FINAL DEPARTMENTAL ASSESSMENT</div>
+      <div class="section-title">Classified Conclusion</div>
+
+      <div style="padding:1.5rem;background:var(--surface);border:1px solid var(--border);margin-bottom:1.5rem;">
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--khaki);margin-bottom:0.75rem;">AUTOMATED DEPARTMENT TRANSCRIPT — FINAL REPORT</div>
+        <span class="typing-container" id="typingText"></span>
+      </div>
+
+      <div style="text-align:center;margin-top:2rem;">
+        <div class="stamp" style="font-size:1.2rem;">FILE STATUS: PERMANENTLY OPEN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-seal">🇿🇦</div>
+    <div class="footer-dept">Republic of South Africa • Department of Human Potential</div>
+    <div style="font-size:0.7rem;opacity:0.6;margin:0.5rem 0;">
+      "Protecting the nation from unauthorized excellence since <span class="redacted" style="background:#d4c9a0;color:#d4c9a0;">we gave up and started recommending her to everyone</span>"
+    </div>
+    <div class="footer-disclaimer">
+      This document is a work of satirical fiction created with immense admiration and affection for Lauri Burke. 
+      No actual government departments, covert operations, or containment protocols were involved (though they probably should be). 
+      Lauri is a real person doing genuinely remarkable work, and the only "threat" she poses is to mediocrity.
+      Level Up with Lauri. Seriously. You won't regret it.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // === STATE ===
+  let entered = false;
+  let quizScore = 0;
+  let quizStep = 0;
+  let konamiPos = 0;
+  let sealClicks = 0;
+  const konamiCode = [38,38,40,40,37,39,37,39,66,65];
+  const totalSteps = 5;
+
+  const $ = id => document.getElementById(id);
+
+  // === CONSOLE EASTER EGG ===
+  console.log('%c🇿🇦 DEPARTMENT OF HUMAN POTENTIAL 🇿🇦', 'font-size:20px;font-weight:bold;color:#2c3e2d;');
+  console.log('%cCLASSIFIED FILE: LB-00742-OMEGA', 'font-size:14px;color:#b03a2e;');
+  console.log('%cSubject: Lauri Burke // Status: Uncontained // Threat Level: Exceptional', 'font-size:11px;color:#4a4a3e;');
+  console.log('%cIf you are reading this, you are already under her influence.', 'font-size:11px;color:#8b7d5e;font-style:italic;');
+  console.log('%cFor coaching inquiries: @level_up_with_lauri on Instagram', 'font-size:11px;color:#3d5c3e;');
+
+  // === SPLASH ===
+  $('enterBtn').onclick = () => {
+    entered = true;
+    $('splash').classList.add('hidden');
+    $('topBar').classList.add('visible');
+    $('liveCounter').classList.add('visible');
+    startCitizenCounter();
+    document.body.style.overflow = '';
+  };
+  document.body.style.overflow = 'hidden';
+
+  // === CITIZEN COUNTER ===
+  let citizenBase = 12847;
+  function startCitizenCounter() {
+    setInterval(() => {
+      citizenBase += Math.floor(Math.random() * 3) + 1;
+      $('citizenCount').textContent = citizenBase.toLocaleString();
+    }, 2500);
+  }
+
+  // === REDACTED TEXT ===
+  document.querySelectorAll('.redacted').forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('revealed');
+    });
+  });
+
+  // === SCROLL REVEAL ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // === QUIZ ===
+  function selectQuiz(btn) {
+    const opts = btn.parentElement.querySelectorAll('.quiz-option');
+    opts.forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    
+    if (quizStep < totalSteps - 1) {
+      $('quizNextBtn').style.display = 'block';
+      $('quizResultBtn').style.display = 'none';
+    } else {
+      $('quizNextBtn').style.display = 'none';
+      $('quizResultBtn').style.display = 'block';
+    }
+  }
+
+  function nextQuizStep() {
+    const currentStep = document.querySelector(`.quiz-step[data-step="${quizStep}"]`);
+    const selected = currentStep.querySelector('.quiz-option.selected');
+    if (!selected) return;
+    quizScore += parseInt(selected.dataset.score);
+    currentStep.style.display = 'none';
+    quizStep++;
+    document.querySelector(`.quiz-step[data-step="${quizStep}"]`).style.display = 'block';
+    $('quizNextBtn').style.display = 'none';
+  }
+
+  function showQuizResult() {
+    const currentStep = document.querySelector(`.quiz-step[data-step="${quizStep}"]`);
+    const selected = currentStep.querySelector('.quiz-option.selected');
+    if (!selected) return;
+    quizScore += parseInt(selected.dataset.score);
+    $('quizResultBtn').style.display = 'none';
+    
+    const result = $('quizResult');
+    let text = '';
+    
+    if (quizScore <= 7) {
+      text = `<strong>EXPOSURE LEVEL: MODERATE</strong><br><br>Score: ${quizScore}/15<br><br>You show early signs of susceptibility to personal growth. The Department classifies you as "pre influenced." It is only a matter of time. We recommend you avoid Cape Town, Instagram, and anyone who seems suspiciously happy with their life. Especially Lauri Burke.`;
+    } else if (quizScore <= 11) {
+      text = `<strong>EXPOSURE LEVEL: HIGH</strong><br><br>Score: ${quizScore}/15<br><br>You are significantly compromised. The Department's behavioural analysts indicate you are already exhibiting signs of self awareness, emotional intelligence, and (most alarmingly) hope. Subject Burke's influence is clearly at work. Containment is no longer possible. We suggest you lean into it.`;
+    } else {
+      text = `<strong>EXPOSURE LEVEL: CRITICAL — FULL TRANSFORMATION DETECTED</strong><br><br>Score: ${quizScore}/15<br><br>You are too far gone. The Department formally classifies you as a "Leveled Up Individual." You likely journal, set boundaries, communicate your feelings, AND have a vision for your future. This is entirely Lauri Burke's fault. There is no cure. There is only continued growth. Welcome to the other side.`;
+    }
+    
+    $('quizResultText').innerHTML = text;
+    result.classList.add('visible');
+  }
+
+  // === THREAT CALCULATOR ===
+  const sliders = ['satisfaction', 'openness', 'proximity', 'selfwork'];
+  sliders.forEach(id => {
+    $(id).addEventListener('input', () => {
+      $(id + 'Val').textContent = $(id).value;
+    });
+  });
+
+  $('calcBtn').onclick = () => {
+    const sat = parseInt($('satisfaction').value);
+    const open = parseInt($('openness').value);
+    const prox = parseInt($('proximity').value);
+    const self = parseInt($('selfwork').value);
+
+    // Higher openness + lower satisfaction + closer to CT + more "I should" = higher threat
+    const proxFactor = Math.max(0, (10000 - prox) / 10000) * 30;
+    const openFactor = open * 3;
+    const satFactor = (10 - sat) * 2;
+    const selfFactor = Math.min(self, 20) * 1;
+    
+    let threat = Math.min(99, Math.max(15, Math.round(proxFactor + openFactor + satFactor + selfFactor + 10)));
+    
+    $('threatPercent').textContent = threat + '%';
+    
+    let text;
+    if (threat < 40) text = 'LOW RISK. You are temporarily safe, but remain vigilant. Subject Burke has been known to reach even the most resistant individuals.';
+    else if (threat < 60) text = 'MODERATE RISK. You are showing vulnerability to personal transformation. The Department advises avoiding motivational content for the next 72 hours.';
+    else if (threat < 80) text = 'HIGH RISK. Your psychological defenses are compromised. It is highly probable that a single session with Subject Burke would result in permanent positive change.';
+    else text = 'EXTREME RISK. You are essentially already a client. The Department recommends immediate surrender. Follow @level_up_with_lauri and accept your fate.';
+    
+    $('threatText').textContent = text;
+    $('calcResult').style.display = 'block';
+    $('calcResult').style.animation = 'fadeUp 0.5s ease-out';
+  };
+
+  // === TYPING EFFECT ===
+  const typingText = "After extensive investigation spanning multiple years, countless surveillance hours, and the loss of several agents to the coaching profession... the Department of Human Potential has reached the following conclusion: Lauri Burke is, without question, one of the most extraordinary forces for human transformation this nation has ever produced. Her SACAP training, combined with an innate capacity for empathy, insight, and genuine connection, makes her not a threat to be contained, but a national treasure to be celebrated. The official recommendation of this Department is as follows: LEVEL UP. That is all.";
+  let typingIndex = 0;
+  let typingStarted = false;
+
+  const typingObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !typingStarted) {
+        typingStarted = true;
+        typeText();
+      }
+    });
+  }, { threshold: 0.3 });
+  typingObserver.observe($('typingSection'));
+
+  function typeText() {
+    if (typingIndex < typingText.length) {
+      $('typingText').textContent += typingText[typingIndex];
+      typingIndex++;
+      setTimeout(typeText, 25 + Math.random() * 35);
+    }
+  }
+
+  // === KONAMI CODE ===
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === konamiCode[konamiPos]) {
+      konamiPos++;
+      if (konamiPos === konamiCode.length) {
+        $('konamiOverlay').classList.add('active');
+        konamiPos = 0;
+      }
+    } else {
+      konamiPos = 0;
+    }
+  });
+
+  $('konamiOverlay').addEventListener('click', () => {
+    $('konamiOverlay').classList.remove('active');
+  });
+
+  // === SEAL CLICK EASTER EGG ===
+  document.querySelector('.hero-stamp').addEventListener('click', () => {
+    sealClicks++;
+    if (sealClicks === 7) {
+      alert('🔓 CLASSIFIED MEMO UNLOCKED:\n\n"Honestly, we just wanted an excuse to write nice things about Lauri. She really is that good."\n\n— Anonymous Department Official');
+      sealClicks = 0;
+    }
+  });
+
+  // === DECLASSIFY ALL (double click on any CLASSIFIED stamp) ===
+  document.querySelectorAll('.stamp').forEach(stamp => {
+    stamp.addEventListener('dblclick', () => {
+      document.querySelectorAll('.redacted:not(.revealed)').forEach(r => {
+        r.classList.add('revealed');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

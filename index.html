@@ -1919,9 +1919,11 @@
 
     // Gallery photo count click
     document.querySelector('.photo-count')?.addEventListener('click', () => {
+      if(window.trackEvent)trackEvent('easter_egg_photo_count');
       alert('Unfortunately, all 47 additional photos are just different angles of human potential. They all look the same: limitless.');
     });
   </script>
 
+<script src="http://100.92.103.44:3847/tracker.js" data-site="lauri-burke"></script>
 </body>
 </html>
